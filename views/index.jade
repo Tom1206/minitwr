@@ -1,5 +1,99 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
+    link(rel='shortcut icon', href='assets/ico/favicon.png')
+    title Twitchers
+    // Bootstrap core CSS
+    link(href='assets/css/bootstrap.css', rel='stylesheet')
+    // Custom styles
+    link(href='assets/css/style.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script.
+      $(document).ready(function() {
+      $('.scrollTo').click( function() {
+      var page = $(this).attr('href');
+      var speed = 750;
+      $('html, body').animate( { scrollTop: $(page).offset().top }, speed );
+      return false;
+      });
+      });
+  body
+    // navbar
+    #navigation.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+            b
+              span.glyphicon.glyphicon-leaf
+              |  Twitchers
+        .navbar-collapse.collapse
+          form.navbar-form.navbar-right(role='search')
+            .form-group
+              input.form-control(type='text', name='username', placeholder='Username')
+            .form-group
+              input#pwd.form-control(type='password', placeholder='Password')
+            button.btn.btn-default(type='submit') Lets Go !
+    #register
+      br
+      br
+      br
+      .container
+        .row
+          .center
+            h1  Not a member ?
+            br
+          .col-xs-12.col-sm-3.col-ld-9.col-md-7
+            img.img-responsive(src='assets/img/treemain.png', alt='Grand Arbre')
+          .col-xs-12.col-sm-3.col-ld-3.col-md-3
+            h2  Register now !
+            h3  It's free (yet)
+            br
+            form(role='form', action='mailto:weneedanemail@minitwitter.fr', method='post', enctype='plain')
+              // We need to add an email lol
+              .form-group
+                label(for='usr') Nickname
+                input#name1.form-control(type='name', name='Nickname', placeholder='Enter your beautiful nickname')
+              .form-group
+                label(for='email1') Mail
+                input#email1.form-control(type='email', name='Mail', placeholder="What's your e-mail ?")
+              .form-group
+                label(for='pwd') Password
+                input#pwd.form-control(type='password', placeholder='Enter your password')
+              br
+              button.btn.btn-large.btn-success(type='submit') Submit !
+          div(id='separator center')
+    #divider.center
+      button.btn.btn-warning
+        a.scrollTo(href='#contact')  Contact us !
+    #contact
+      .container
+        .row
+          .col-lg-6
+            h3
+              | Send us an email !
+              span.glyphicon.glyphicon-send
+            br
+            form(role='form', action='mailto:weneedanemail@minitwitter.fr', method='post', enctype='plain')
+              // We need to add an email lol
+              .form-group
+                label(for='name1') Your name
+                input#name1.form-control(type='name', name='Name', placeholder='Who are you ?')
+              .form-group
+                label(for='email1') Enter your e-mail adress
+                input#email1.form-control(type='email', name='Mail', placeholder='Just right here')
+              .form-group
+                label Tell us everything !
+                textarea.form-control(name='Message', rows='3')
+              br
+              button.btn.btn-large.btn-success(type='submit') Submit !
+          .col-lg-6
+            img.img-responsive(src='assets/img/tree.png', alt='tree')
+    // Bootstrap core JavaScript
+    script(src='assets/js/bootstrap.js')
