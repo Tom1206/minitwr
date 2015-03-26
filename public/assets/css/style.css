@@ -1,0 +1,79 @@
+/* Other */
+
+.center
+{
+	text-align:center;
+}
+
+
+/* Font Face */
+@font-face {
+	font-family: 'tahoma';
+	src: url('assets/Tahoma.otf') format('truetype'),
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* Navbar */
+.navbar-brand
+{
+	font-family:"tahoma";
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
+{
+    color: green;
+}
+
+
+/* Register div*/
+#register
+{
+	background-image:url('assets/img/concrete_seamless.png');
+	background-repeat:repeat;
+}
+
+#register h1
+{
+    font-family: "Helvetica";
+	font-weight:bold;
+    color: #000;
+	border-bottom: 1px solid #ccc;
+}
+
+#register h2
+{
+    font-family: "Helvetica";
+	font-weight:bold;
+    color: #000;
+}
+
+#register h3
+{
+	font-family: "Helvetica";
+	font-weight:italic;
+	color:green;
+
+}
+
+/* Divider */
+
+#divider
+{
+	margin-top:10%;
+	margin-bottom:10%;
+}
+
+#divider a
+{
+	font-size:20px;
+	color:white;
+}
+
+/* Contact div */
+#contact
+{
+	background-color:green;
+}
+
