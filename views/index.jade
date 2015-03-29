@@ -55,7 +55,7 @@ html(lang='en')
             h2  Register now !
             h3  It's free (yet)
             br
-            form(role='form', action='mailto:weneedanemail@minitwitter.fr', method='post', enctype='plain')
+            form(role='form', action='/', method='post', enctype='plain')
               // We need to add an email lol
               .form-group
                 label(for='usr') Nickname
@@ -65,7 +65,7 @@ html(lang='en')
                 input#email1.form-control(type='email', name='Mail', placeholder="What's your e-mail ?")
               .form-group
                 label(for='pwd') Password
-                input#pwd.form-control(type='password', placeholder='Enter your password')
+                input#pwd.form-control(type='password', name='Password', placeholder='Enter your password')
               br
               button.btn.btn-large.btn-success(type='submit') Submit !
           div(id='separator center')
