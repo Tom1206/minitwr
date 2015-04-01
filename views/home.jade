@@ -1,0 +1,74 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
+    link(rel='shortcut icon', href='assets/ico/favicon.png')
+    title Twitchers
+    // Bootstrap core CSS
+    link(href='assets/css/bootstrap.css', rel='stylesheet')
+    // Custom styles
+    link(href='assets/css/style.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script.
+      $(document).ready(function() {
+      $('.scrollTo').click( function() {
+      var page = $(this).attr('href');
+      var speed = 750;
+      $('html, body').animate( { scrollTop: $(page).offset().top }, speed );
+      return false;
+      });
+      });
+  body
+    // navbar
+    #navigation.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+            span.glyphicon.glyphicon-leaf
+        .navbar-collapse.collapse
+          .col-sm-9.col-md-9.pull-left
+            form.navbar-form(role='search')
+              .input-group
+                input.form-control(type='text', placeholder='Search', name='research')
+                .input-group-btn
+                  button.btn.btn-default(type='submit')
+                    span.glyphicon.glyphicon-search
+          ul.nav.navbar-nav
+            li
+              a(title='Home', href='#')
+                span.glyphicon.glyphicon-home
+            li
+              a(title='Profile', href='#')
+                span.glyphicon.glyphicon-phone
+            li
+              a(title='Messages', href='#')
+                span.glyphicon.glyphicon-envelope
+    br
+    br
+    br
+    br
+    .container
+      .row
+        .col-md-6.col-md-offset-3
+          ul.list-inline.center
+            li
+              a(title='Add picture')
+                span.glyphicon.glyphicon-picture
+            li
+              a(title='Add location')
+                span.glyphicon.glyphicon-map-marker
+            li
+              a(title='Add photo album')
+                span.glyphicon.glyphicon-folder-open
+          form(role='form', action='/home', method='post', enctype='plain')
+            .form-group
+              input.form-control(type='text', name='Tweet', placeholder='What did you see ?')
+              button.btn.btn-default.pull-right(type='submit') Send
+    // Bootstrap core JavaScript
+    script(src='assets/js/bootstrap.js')

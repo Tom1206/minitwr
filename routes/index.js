@@ -20,8 +20,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
   console.log('name ' + req.body.Nickname);
-  console.log('name ' + req.body.Mail);
-  console.log('name ' + req.body.Password);
+  console.log('Mail ' + req.body.Mail);
+  console.log('Password ' + req.body.Password);
   var newuser = new userModel({ nickname : req.body.Nickname, mail : req.body.Mail, password : req.body.Password});
   newuser.save();
 });
