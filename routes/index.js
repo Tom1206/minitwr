@@ -1,7 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
 var router = express.Router();
+
+var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
@@ -22,7 +25,9 @@ router.post('/', function(req, res) {
   console.log('name ' + req.body.Nickname);
   console.log('name ' + req.body.Mail);
   console.log('name ' + req.body.Password);
-  var newuser = new userModel({ nickname : req.body.Nickname, mail : req.body.Mail, password : req.body.Password});
+  var hash = crypto.createHash("sha512").update(req.body.Password).digest("base64");
+
+  var newuser = new userModel({ nickname : req.body.Nickname, mail : req.body.Mail, password : hash});
   newuser.save();
 });
 
