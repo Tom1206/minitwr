@@ -28,6 +28,7 @@ router.post('/', function(req, res) {
   var hash = crypto.createHash("sha512").update(req.body.Password).digest("base64");
 
   var newuser = new userModel({ nickname : req.body.Nickname, mail : req.body.Mail, password : hash});
+
   newuser.save();
 });
 
