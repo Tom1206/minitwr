@@ -16,7 +16,7 @@ var userSchema = new Schema({
 
 var userModel = mongoose.model('User', userSchema);
 
-/* GET home page. */
+/* GET / page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
