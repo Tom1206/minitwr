@@ -5,7 +5,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
-    title Twitchers
+    title Twitchers - Réseau social 3.0 !
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custom styles
@@ -34,11 +34,11 @@ html(lang='en')
               span.glyphicon.glyphicon-leaf
               |  Twitchers
         .navbar-collapse.collapse
-          form.navbar-form.navbar-right(role='search')
+          form.navbar-form.navbar-right(role='search', action='/login', method='POST')
             .form-group
               input.form-control(type='text', name='username', placeholder='Username')
             .form-group
-              input#pwd.form-control(type='password', placeholder='Password')
+              input#pwd.form-control(type='password', name='password', placeholder='Password')
             button.btn.btn-default(type='submit') Lets Go !
     #register
       br
@@ -55,17 +55,17 @@ html(lang='en')
             h2  Register now !
             h3  It's free (yet)
             br
-            form(role='form', action='/', method='post', enctype='plain')
+            form(role='form', action='/signup', method='post')
               // We need to add an email lol
               .form-group
                 label(for='usr') Nickname
-                input#name1.form-control(type='name', name='Nickname', placeholder='Enter your beautiful nickname')
+                input#name1.form-control(type='name', name='username', placeholder='Enter your beautiful nickname')
               .form-group
                 label(for='email1') Mail
-                input#email1.form-control(type='email', name='Mail', placeholder="What's your e-mail ?")
+                input#email1.form-control(type='email', name='email', placeholder="What's your e-mail ?")
               .form-group
                 label(for='pwd') Password
-                input#pwd.form-control(type='password', name='Password', placeholder='Enter your password')
+                input#pwd.form-control(type='password', name='password', placeholder='Enter your password')
               br
               button.btn.btn-large.btn-success(type='submit') Submit !
           div(id='separator center')

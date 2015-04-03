@@ -1,35 +1,53 @@
 var express = require('express');
-var mongoose = require('mongoose');
-var crypto = require('crypto');
-
 var router = express.Router();
 
-var mongoose = require('mongoose');
+var tweet = require('../models/tweet');
 
-var Schema = mongoose.Schema;
+var isAuthenticated = function (req, res, next) {
+	// if user is authenticated in the session, call the next() to call the next request handler
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+	if (req.isAuthenticated())
+		return next();
+	// if the user is not authenticated then redirect him to the login page
+	res.redirect('/');
+}
 
-var userSchema = new Schema({
-  nickname: String,
-  mail: String,
-  password: String
-});
+module.exports = function(passport){
 
-var userModel = mongoose.model('User', userSchema);
+	/* / */
+	router.get('/', function(req, res) {
+		res.render('index', { message: req.flash('message') });
+	});
 
-/* GET / page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+	/* /login */
+	router.post('/login', passport.authenticate('login', {
+		successRedirect: '/home',
+		failureRedirect: '/',
+		failureFlash : true
+	}));
 
-router.post('/', function(req, res) {
-  console.log('name ' + req.body.Nickname);
-  console.log('name ' + req.body.Mail);
-  console.log('name ' + req.body.Password);
-  var hash = crypto.createHash("sha512").update(req.body.Password).digest("base64");
+	/* /signup */
+	router.post('/signup', passport.authenticate('signup', {
+		successRedirect: '/home',
+		failureRedirect: '/',
+		failureFlash : true
+	}));
 
-  var newuser = new userModel({ nickname : req.body.Nickname, mail : req.body.Mail, password : hash});
+	/* /home */
+	router.get('/home', isAuthenticated, function(req, res){
+		res.render('home', { user: req.user });
+	});
 
-  newuser.save();
-});
+  router.post('/home', isAuthenticated, function(req, res) {
+    console.log('tweet ' + req.body.Tweet);
+  });
 
-module.exports = router;
+	/* logout */
+	router.get('/signout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
+
+	return router;
+}

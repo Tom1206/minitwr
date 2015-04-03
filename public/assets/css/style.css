@@ -1,5 +1,4 @@
 /* Other */
-
 .center
 {
 	text-align:center;
@@ -21,18 +20,19 @@
 	font-family:"tahoma";
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
 {
     color: green;
 }
 
 
-/* Register div*/
+/* Register div
 #register
 {
 	background-image:url('assets/img/concrete_seamless.png');
 	background-repeat:repeat;
 }
+*/
 
 #register h1
 {
@@ -58,7 +58,6 @@
 }
 
 /* Divider */
-
 #divider
 {
 	margin-top:10%;
@@ -76,4 +75,3 @@
 {
 	background-color:green;
 }
-

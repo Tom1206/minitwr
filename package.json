@@ -1,6 +1,6 @@
 {
   "name": "twitchers",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -14,6 +14,10 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "mongoose": "~4.0.1",
-    "crypto": "~0.0.2"
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "express-session": "~1.0.4",
+    "bcrypt-nodejs" : "*",
+    "connect-flash" : "*"
   }
 }
