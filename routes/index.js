@@ -35,12 +35,18 @@ module.exports = function(passport){
 	}));
 
 	/* /home */
+
 	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
+			tweet.find(function (err, tweets) {
+		  if (err) return console.error(err);
+			res.render('home', { user: req.user, tweets: tweets });
+		})
 	});
 
   router.post('/home', isAuthenticated, function(req, res) {
-    console.log('tweet ' + req.body.Tweet);
+		var todo = new tweet({tweet: req.body.Tweet});
+		todo.save;
+    console.log('tweet ' + todo);
   });
 
 	/* logout */
