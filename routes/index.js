@@ -40,9 +40,7 @@ module.exports = function(passport){
 	router.get('/home', isAuthenticated, function(req, res){
 				tweet.find().limit(3).select("nickname date tweet -_id").sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
-				var test1=tweets[0];
-				var test2=tweets[1];
-				res.render('home', { user: req.user, tweet1: test1, tweet2: test2  });
+				res.render('home', { user: req.user, tweet: tweets});
 				})
 	});
 
