@@ -46,13 +46,11 @@ module.exports = function(passport){
 	});
 
   router.post('/home', isAuthenticated, function(req, res) {
-		var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		var date = moment().format('MMMM Do YYYY, HH:mm:ss');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date});
 		newtweet.save();
-			tweet.find().select("nickname date tweet -_id").exec( function (err, tweets) {
-			if (err) return console.error(err);
-			res.render('home', { user: req.user, tweets: tweets});
-			})
+
+		res.redirect('/home');
   });
 
 	/* logout */
