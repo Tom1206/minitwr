@@ -71,12 +71,21 @@ html(lang='en')
               input.form-control(type='text', name='Tweet', placeholder='What did you see ?')
               button.btn.btn-default.pull-right(type='submit') Send
           br
+
           p
-            strong #{tweets.nickname}
+            strong #{tweet1.nickname}
             br
-            |#{tweets.tweet}
+            |#{tweet1.tweet}
             br
-            |#{tweets.date}
+            |#{tweet1.date}
+          br
+          p
+            strong #{tweet2.nickname}
+            br
+            |#{tweet2.tweet}
+            br
+            |#{tweet2.date}
+
 
 
     // Bootstrap core JavaScript
