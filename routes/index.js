@@ -38,8 +38,7 @@ module.exports = function(passport){
 	/* /home */
 
 	router.get('/home', isAuthenticated, function(req, res){
-
-		tweet.find().select("nickname date tweet -_id").exec( function (err, tweets) {
+				tweet.findOne().select("nickname date tweet -_id").exec( function (err, tweets) {
 			  if (err) return console.error(err);
 				res.render('home', { user: req.user, tweets: tweets });
 				})
@@ -49,7 +48,6 @@ module.exports = function(passport){
 		var date = moment().format('MMMM Do YYYY, HH:mm:ss');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date});
 		newtweet.save();
-
 		res.redirect('/home');
   });
 
