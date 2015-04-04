@@ -1,4 +1,5 @@
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
 
 var tweet = require('../models/tweet');
@@ -37,16 +38,21 @@ module.exports = function(passport){
 	/* /home */
 
 	router.get('/home', isAuthenticated, function(req, res){
-			tweet.find(function (err, tweets) {
-		  if (err) return console.error(err);
-			res.render('home', { user: req.user, tweets: tweets });
-		})
+
+		tweet.find().select("nickname date tweet -_id").exec( function (err, tweets) {
+			  if (err) return console.error(err);
+				res.render('home', { user: req.user, tweets: tweets });
+				})
 	});
 
   router.post('/home', isAuthenticated, function(req, res) {
-		var todo = new tweet({tweet: req.body.Tweet});
-		todo.save;
-    console.log('tweet ' + todo);
+		var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date});
+		newtweet.save();
+			tweet.find().select("nickname date tweet -_id").exec( function (err, tweets) {
+			if (err) return console.error(err);
+			res.render('home', { user: req.user, tweets: tweets});
+			})
   });
 
 	/* logout */
