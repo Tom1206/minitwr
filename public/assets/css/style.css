@@ -1,9 +1,62 @@
+/*  Box logpage*/
+
+.boxtweets
+{
+	border: 1px green solid;
+}
+
+.tweethead
+{
+	border-bottom: 1px green solid;
+	padding:2px;
+	margin-top:2px;
+}
+
+.nickname
+{
+	left:0px;
+
+}
+
+.number
+{
+	float:right;
+}
+.date
+{
+	float:left;
+}
+
+.bodytweet
+{
+	margin-top:2px;
+	border-bottom: 1px green solid;
+}
+
+.footertweet
+{
+
+}
+
 /* Other */
+
+
+
 .center
 {
 	text-align:center;
 }
 
+.tahoma
+{
+	font-family:tahoma;
+}
+
+
+p
+{
+	font-family:tahoma;
+}
 
 /* Font Face */
 @font-face {
@@ -20,19 +73,18 @@
 	font-family:"tahoma";
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
 {
     color: green;
 }
 
 
-/* Register div
+/* Register div*/
 #register
 {
 	background-image:url('assets/img/concrete_seamless.png');
 	background-repeat:repeat;
 }
-*/
 
 #register h1
 {
@@ -58,6 +110,7 @@
 }
 
 /* Divider */
+
 #divider
 {
 	margin-top:10%;
@@ -75,3 +128,14 @@
 {
 	background-color:green;
 }
+
+/* Log page */
+
+#wrapper {
+  border: 1px #e4e4e4 solid;
+}
+
+
+
+
+

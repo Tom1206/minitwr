@@ -5,21 +5,11 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
-    title Twitchers - #{user.username}
+    title Twitchers
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custom styles
     link(href='assets/css/style.css', rel='stylesheet')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-    script.
-      $(document).ready(function() {
-      $('.scrollTo').click( function() {
-      var page = $(this).attr('href');
-      var speed = 750;
-      $('html, body').animate( { scrollTop: $(page).offset().top }, speed );
-      return false;
-      });
-      });
   body
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
@@ -35,7 +25,7 @@ html(lang='en')
           .col-sm-9.col-md-9.pull-left
             form.navbar-form(role='search')
               .input-group
-                input.form-control(type='text', placeholder='Search', name='research')
+                input.form-control(type='text', placeholder='Search (profile, tweet, groups etc...)', name='research')
                 .input-group-btn
                   button.btn.btn-default(type='submit')
                     span.glyphicon.glyphicon-search
@@ -44,18 +34,26 @@ html(lang='en')
               a(title='Home', href='#')
                 span.glyphicon.glyphicon-home
             li
-              a(title='Profile', href='#')
+              a(title='Profile', href='profile.html')
                 span.glyphicon.glyphicon-phone
             li
               a(title='Messages', href='#')
                 span.glyphicon.glyphicon-envelope
-    br
+            li
+              a(title='LogOut', href='#')
+                span.glyphicon.glyphicon-off
     br
     br
     br
     .container
       .row
-        .col-md-6.col-md-offset-3
+        .col-md-3
+          img.img-responsive(src='assets/img/bird1.png', alt='bird')
+        br
+        br
+        br
+        br
+        .col-md-6
           ul.list-inline.center
             li
               a(title='Add picture')
@@ -66,30 +64,35 @@ html(lang='en')
             li
               a(title='Add photo album')
                 span.glyphicon.glyphicon-folder-open
-          form(role='form', action='/home', method='post', enctype='plain')
+          form(role='form')
             .form-group
-              input.form-control(type='text', name='Tweet', placeholder='What did you see ?')
-              button.btn.btn-default.pull-right(type='submit') Send
-          br
-
-          p
-          
-
-
-          script.
-            var i=0;
-            var tweets= !{JSON.stringify(tweet)};
-            while(tweets[i].tweet !=null)
-            {
-            document.write('<strong>'+tweets[i].nickname+'</strong><br/>');
-            document.write(tweets[i].tweet+'<br/>');
-            document.write(tweets[i].date);
-            document.write('<br/>');
-            document.write('<br/>');
-            i++;
-            }
-
-
+              textarea(cols='89', rows='4', name='tellus')
+              button.btn.btn-default.pull-right(style='margin-top:2px;', type='submit') Send
+              
+    .container
+      script.
+        var i=0;
+        var tweets= !{JSON.stringify(tweet)};
+        while(tweets[i].tweet !=null)
+        {
+          document.write('<div class="container">');
+          document.write('<div class="row">');
+          document.write('<div class="col-md-6 col-md-offset-3 boxtweets">')
+          document.write('<div class="tweethead"><span type="reset" class="glyphicon glyphicon-remove-circle" style="float:left; color:red;"></span>')
+          document.write('<p class="nickname"><strong>&nbsp&nbsp'+tweets[i].nickname+'</strong></p></div>');
+          document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
+          document.write('<div id="footertweet"><p>'+tweets[i].date+'</p></div>');
+          document.write('</div>');
+          document.write('</div>');
+          document.write('</div>');
+          document.write('<br/>')
+          i++;
+        }
+    .container
+      .row
+        .col-md-7
+          button.btn.btn-default.pull-right(type='submit') More Tweets
+    br
 
     // Bootstrap core JavaScript
     script(src='assets/js/bootstrap.js')
