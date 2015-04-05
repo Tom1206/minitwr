@@ -38,11 +38,19 @@ module.exports = function(passport){
 	/* /home */
 
 	router.get('/home', isAuthenticated, function(req, res){
-				tweet.find().limit(20).select("nickname date tweet -_id").sort({date: -1}).exec( function (err, tweets) {
+				tweet.find().limit(20).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
 				res.render('home', { user: req.user, tweet: tweets});
-				})
+			});
 	});
+
+	router.post('/deletetweet', isAuthenticated, function(req, res) {
+		console.log('id: ' + req.body.idtweet);
+		tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
+		if (err) return console.error(err);
+		res.redirect('/home');
+	});
+});
 
   router.post('/home', isAuthenticated, function(req, res) {
 		var date = moment().format('DD/MM/YYYY, HH:mm:ss');
