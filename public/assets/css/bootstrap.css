@@ -172,6 +172,7 @@ input[type="reset"],
 input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
+  -webkit-appearance: button;
 }
 
 button[disabled],
@@ -2356,6 +2357,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
+
 
 .fade {
   opacity: 0;

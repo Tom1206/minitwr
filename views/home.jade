@@ -71,10 +71,10 @@ html(lang='en')
 
     .container
       script.
-        var i=0;
+        i=0;
         var tweets= !{JSON.stringify(tweet)};
-        var user=!{JSON.stringify(user)};
-        while(tweets[i].tweet != null)
+        var user= !{JSON.stringify(user)};
+        while (tweets[i].nickname != null)
         {
           document.write('<div class="container">');
           document.write('<div class="row">');
@@ -87,7 +87,7 @@ html(lang='en')
             document.write('<div class="form-group">');
             document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[i]._id + '">');
             document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:left; color:red;"></button>');
-            document.write('</div>')
+            document.write('</div>');
             document.write('</form>');
           }
 
@@ -99,13 +99,29 @@ html(lang='en')
           document.write('</div>');
           document.write('</div>');
           document.write('</div>');
-          document.write('<br/>')
+          document.write('<br/>');
           i++;
         }
-    .container
-      .row
-        .col-md-7
-          button.btn.btn-default.pull-right(type='submit') More Tweets
+      script.
+        var i=i+10;
+        if(i%10==0)
+        {
+          document.write('<div class="container">');
+          document.write('<div class="row">');
+          document.write('<div class="col-md-7">');
+          document.write('<form role="form" action="/affichetweet" method="post" enctype="plain">');
+          document.write('<div class="form-group">');
+          document.write('<input type="hidden" name="nbtweet" class="form-control" value="' + i + '">');
+          document.write('<button type="submit" class="btn btn-default pull-right">More Tweets</button>');
+          document.write('</div>');
+          document.write('</form>');
+          document.write('</div>');
+          document.write('</div>');
+          document.write('</div>');
+        }
+
+
+
     br
 
     // Bootstrap core JavaScript
