@@ -73,25 +73,21 @@ html(lang='en')
           br
 
           p
-            strong #{tweet[0].nickname}
-            br
-            |#{tweet[0].tweet}
-            br
-            |#{tweet[0].date}
-          br
-          p
-            strong #{tweet[1].nickname}
-            br
-            |#{tweet[1].tweet}
-            br
-            |#{tweet[1].date}
-          br
-          p
-            strong #{tweet[2].nickname}
-            br
-            |#{tweet[2].tweet}
-            br
-            |#{tweet[2].date}
+          
+
+
+          script.
+            var i=0;
+            var tweets= !{JSON.stringify(tweet)};
+            while(tweets[i].tweet !=null)
+            {
+            document.write('<strong>'+tweets[i].nickname+'</strong><br/>');
+            document.write(tweets[i].tweet+'<br/>');
+            document.write(tweets[i].date);
+            document.write('<br/>');
+            document.write('<br/>');
+            i++;
+            }
 
 
 
