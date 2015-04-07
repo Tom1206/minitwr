@@ -20,7 +20,8 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
           a.navbar-brand(href='#')
-            span.glyphicon.glyphicon-leaf  #{user.username}
+            span.glyphicon.glyphicon-leaf &nbsp
+            | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-9.pull-left
             form.navbar-form(role='search')
@@ -31,16 +32,16 @@ html(lang='en')
                     span.glyphicon.glyphicon-search
           ul.nav.navbar-nav
             li
-              a(title='Home', href='#')
+              a(title='Home', href='/home')
                 span.glyphicon.glyphicon-home
             li
-              a(title='Profile', href='profile.html')
+              a(title='Profile', href='/profile')
                 span.glyphicon.glyphicon-phone
             li
               a(title='Messages', href='#')
                 span.glyphicon.glyphicon-envelope
             li
-              a(title='LogOut', href='#')
+              a(title='LogOut', href='/signout')
                 span.glyphicon.glyphicon-off
     br
     br
