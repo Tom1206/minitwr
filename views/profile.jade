@@ -24,7 +24,7 @@ html(lang='en')
           a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
-          .col-sm-9.col-md-9.pull-left
+          .col-sm-9.col-md-7.pull-left
             form.navbar-form(role='search')
               .input-group
                 input.form-control(type='text', placeholder='Search (profile, tweet, groups etc...)', name='research')
@@ -60,29 +60,25 @@ html(lang='en')
         .col-md-6
           h2 Update your informations
           br
-          form(role='form')
+          form(role='form', action='/profile', method='post', enctype='plain')
             .form-group
-              form(role='form')
+              form(role='form', action='/profile', method='post', enctype='plain')
                 .form-group
                   label(for='nickname') Nickname
                   input#nickname.form-control(type='name', name='Nickname', value='#{user.username}')
                 .form-group
                   label(for='email1') Mail
-                  input#email1.form-control(type='email', name='Mail', value='#{user.mail}')
+                  input#email1.form-control(type='email', name='Mail', value='#{user.email}')
                 .form-group
                   label
                     | M
-                    &nbsp
                     input(type='checkbox', name='Male', value='Male')
-                    &nbsp &nbsp
-                    |  F
-                    &nbsp
+                    | F
                     input(type='checkbox', name='female', value='Female')
-                label(for='country', name='pays')  Country
+                label(for='country')  Country
                 br
-                select
-                  option(value='', selected='')
-                  option(value='--')
+                select(type='pays', name='pays')
+                  option(value='')
                   option(value='AF') Afghanistan
                   option(value='AL') Albania
                   option(value='DZ') Algeria
@@ -156,7 +152,12 @@ html(lang='en')
                   option(value='FO') Faroe Islands
                   option(value='FJ') Fiji
                   option(value='FI') Finland
-                  option(value='FR') France
+                  script.
+                    var user= !{JSON.stringify(user)};
+                    if(user.pays == FR)
+                    {
+                      document.write('<option value="FR", selected="selected"> France </option>');
+                    }
                   option(value='FX') France, Metropolitan
                   option(value='GF') French Guiana
                   option(value='PF') French Polynesia
@@ -326,7 +327,7 @@ html(lang='en')
                 br
                 label(for='tellus')  Tell us more about you !
                 br
-                textarea(cols='80', rows='10', name='tellus')
+                textarea(cols='80', rows='10', name='tellus', value='#{user.email}')
                 br
                 br
                 button.btn.btn-large.btn-success(type='submit') Submit !

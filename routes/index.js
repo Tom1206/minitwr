@@ -3,6 +3,7 @@ var moment = require('moment');
 var router = express.Router();
 
 var tweet = require('../models/tweet');
+var User = require('../models/user');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
@@ -71,6 +72,15 @@ module.exports = function(passport){
 	router.get('/profile', isAuthenticated, function(req, res){
 				res.render('profile', { user: req.user});
 			});
+
+	router.post('/profile', isAuthenticated, function(req, res){
+				console.log('Mail ' + req.body.Mail);
+				console.log('Nickname ' + req.body.Nickname);
+				console.log('pays ' + req.body.pays);
+				console.log('tellus ' + req.body.tellus);
+				User.update({username: req.user.username}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus }}, { upsert: true }, function(){});
+				res.redirect('profile');
+	});
 
 	/* logout */
 	router.get('/signout', function(req, res) {
