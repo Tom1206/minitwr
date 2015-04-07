@@ -4,5 +4,7 @@ module.exports = mongoose.model('User',{
 	id: String,
 	username: String,
 	password: String,
-	email: String
+	email: String,
+	pays: String,
+	description: String
 });

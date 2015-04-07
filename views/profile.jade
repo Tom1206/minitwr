@@ -19,8 +19,9 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#')
+          a.navbar-brand(href='/home')
             span.glyphicon.glyphicon-leaf &nbsp
+          a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-9.pull-left
@@ -35,11 +36,11 @@ html(lang='en')
               a(title='Home', href='/home')
                 span.glyphicon.glyphicon-home
             li
-              a(title='Profile', href='/profile')
-                span.glyphicon.glyphicon-phone
-            li
               a(title='Messages', href='#')
                 span.glyphicon.glyphicon-envelope
+            li
+              a(title='modify profile', href='/profile')
+                span.glyphicon.glyphicon-cog
             li
               a(title='LogOut', href='/signout')
                 span.glyphicon.glyphicon-off
@@ -58,25 +59,29 @@ html(lang='en')
             input#inputfile(type='file')
         .col-md-6
           h2 Update your informations
+          br
           form(role='form')
             .form-group
               form(role='form')
                 .form-group
                   label(for='nickname') Nickname
-                  input#nickname.form-control(type='name', name='Nickname', value='databasenickname')
+                  input#nickname.form-control(type='name', name='Nickname', value='#{user.username}')
                 .form-group
                   label(for='email1') Mail
-                  input#email1.form-control(type='email', name='Mail', value='databasemail')
+                  input#email1.form-control(type='email', name='Mail', value='#{user.mail}')
                 .form-group
                   label
                     | M
-                    &nbsp input(type='checkbox', name='Male', value='Male')
+                    &nbsp
+                    input(type='checkbox', name='Male', value='Male')
+                    &nbsp &nbsp
                     |  F
-                    &nbsp input(type='checkbox', name='female', value='Female')
-                label(for='country')  Country
+                    &nbsp
+                    input(type='checkbox', name='female', value='Female')
+                label(for='country', name='pays')  Country
                 br
                 select
-                  option(value='  ', selected='')
+                  option(value='', selected='')
                   option(value='--')
                   option(value='AF') Afghanistan
                   option(value='AL') Albania
