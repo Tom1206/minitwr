@@ -55,7 +55,7 @@ html(lang='en')
             h1  #{user.username}
             hr
           .col-md-6
-            img.img-responsive.img-circle(src='assets/img/profilebean.jpg', alt='profilepic')
+            //img.img-responsive.img-circle(src='assets/img/profilebean.jpg', alt='profilepic')
             input#inputfile(type='file')
         .col-md-6
           h2 Update your informations
@@ -72,9 +72,12 @@ html(lang='en')
                 .form-group
                   label
                     | M
-                    input(type='checkbox', name='Male', value='Male')
+                    &nbsp
+                    input(type='checkbox', name='sexe', value='Male')
+                    &nbsp &nbsp
                     | F
-                    input(type='checkbox', name='female', value='Female')
+                    &nbsp
+                    input(type='checkbox', name='sexe', value='Female')
                 label(for='country')  Country
                 br
                 select(type='pays', name='pays')
@@ -152,12 +155,7 @@ html(lang='en')
                   option(value='FO') Faroe Islands
                   option(value='FJ') Fiji
                   option(value='FI') Finland
-                  script.
-                    var user= !{JSON.stringify(user)};
-                    if(user.pays == FR)
-                    {
-                      document.write('<option value="FR", selected="selected"> France </option>');
-                    }
+                  option(value='FR') France
                   option(value='FX') France, Metropolitan
                   option(value='GF') French Guiana
                   option(value='PF') French Polynesia
@@ -327,7 +325,7 @@ html(lang='en')
                 br
                 label(for='tellus')  Tell us more about you !
                 br
-                textarea(cols='80', rows='10', name='tellus', value='#{user.email}')
+                textarea(cols='80', rows='10', name='tellus') #{user.description}
                 br
                 br
                 button.btn.btn-large.btn-success(type='submit') Submit !

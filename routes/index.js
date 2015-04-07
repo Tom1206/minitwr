@@ -74,11 +74,8 @@ module.exports = function(passport){
 			});
 
 	router.post('/profile', isAuthenticated, function(req, res){
-				console.log('Mail ' + req.body.Mail);
-				console.log('Nickname ' + req.body.Nickname);
-				console.log('pays ' + req.body.pays);
-				console.log('tellus ' + req.body.tellus);
-				User.update({username: req.user.username}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus }}, { upsert: true }, function(){});
+				console.log('sexe ' + req.body.sexe);
+				User.update({username: req.user.username}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
 	});
 
