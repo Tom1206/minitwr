@@ -1,5 +1,7 @@
 var express = require('express');
 var moment = require('moment');
+var formidable = require('formidable');
+
 var router = express.Router();
 
 var tweet = require('../models/tweet');
@@ -67,6 +69,7 @@ module.exports = function(passport){
 		res.redirect('/home');
   });
 
+
 	router.post('/search', isAuthenticated, function(req, res) {
 		tweet.limit(10).find({tweet: req.body.research}, function(err,doc) {
 			if( err || !docs) console.log("No user found");
@@ -77,14 +80,15 @@ module.exports = function(passport){
 				});
 			});
 	});
-	/* /Profile */
+
+	/* /profile */
+>>>>>>> a835012794ed6c58a69caaee6d8b237032e1189f
 
 	router.get('/profile', isAuthenticated, function(req, res){
-				res.render('profile', { user: req.user});
+				res.render('profile', { user: req.user, name_picture: req.user.picture});
 			});
 
 	router.post('/profile', isAuthenticated, function(req, res){
-				console.log('sexe ' + req.body.sexe);
 				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
 	});
@@ -92,7 +96,18 @@ module.exports = function(passport){
 	router.get('/publicprofile', isAuthenticated, function(req, res){
 				res.render('publicprofile', { user: req.user});
 			});
+			
+	// upload profile picture
+	router.post('/upload', isAuthenticated, function(req, res) {
+		var form = new formidable.IncomingForm();
+		form.uploadDir = "./public/uploads/pictures";
 
+		form.parse(req, function (err, fields, files) {
+            var name_picture_up = files.upload.path.substring(24);
+						User.update({username: req.user.username}, {$set: { picture: name_picture_up}}, { upsert: true }, function(){});
+        });
+		res.redirect('/home');
+		});
 
 	/* logout */
 	router.get('/signout', function(req, res) {
