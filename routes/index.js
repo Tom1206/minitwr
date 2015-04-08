@@ -79,6 +79,10 @@ module.exports = function(passport){
 				res.redirect('profile');
 	});
 
+	router.get('/publicprofile', isAuthenticated, function(req, res){
+				res.render('publicprofile', { user: req.user});
+			});
+
 	/* logout */
 	router.get('/signout', function(req, res) {
 		req.logout();
