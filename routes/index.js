@@ -67,6 +67,16 @@ module.exports = function(passport){
 		res.redirect('/home');
   });
 
+	router.post('/search', isAuthenticated, function(req, res) {
+		tweet.limit(10).find({tweet: req.body.research}, function(err,doc) {
+			if( err || !docs) console.log("No user found");
+				User.limit(10).find({user: req.body.research}, function(err,obj) {
+					if( err || !docs) console.log("No user found");
+				 	console.log(obj);
+					console.log(doc);
+				});
+			});
+	});
 	/* /Profile */
 
 	router.get('/profile', isAuthenticated, function(req, res){
@@ -82,6 +92,7 @@ module.exports = function(passport){
 	router.get('/publicprofile', isAuthenticated, function(req, res){
 				res.render('publicprofile', { user: req.user});
 			});
+
 
 	/* logout */
 	router.get('/signout', function(req, res) {
