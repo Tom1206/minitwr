@@ -62,7 +62,7 @@ module.exports = function(passport){
 
   router.post('/home', isAuthenticated, function(req, res) {
 		var date = moment().format('DD/MM/YYYY, HH:mm:ss');
-		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date});
+		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
 		newtweet.save();
 		res.redirect('/home');
   });
@@ -75,7 +75,7 @@ module.exports = function(passport){
 
 	router.post('/profile', isAuthenticated, function(req, res){
 				console.log('sexe ' + req.body.sexe);
-				User.update({username: req.user.username}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
+				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
 	});
 

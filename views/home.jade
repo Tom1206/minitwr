@@ -83,7 +83,7 @@ html(lang='en')
           document.write('<div class="col-md-6 col-md-offset-3 boxtweets">')
           document.write('<div class="tweethead">');
 
-          if (tweets[i].nickname == user.username)
+          if (tweets[i].id == user._id)
           {
             document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
             document.write('<div class="form-group">');
