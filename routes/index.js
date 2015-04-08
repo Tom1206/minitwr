@@ -61,7 +61,7 @@ module.exports = function(passport){
 });
 
   router.post('/home', isAuthenticated, function(req, res) {
-		var date = moment().format('DD/MM/YYYY, HH:mm:ss');
+		var date = moment().format('DD/MM/YYYY, HH:mm');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
 		newtweet.save();
 		res.redirect('/home');
