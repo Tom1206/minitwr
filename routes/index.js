@@ -1,5 +1,7 @@
 var express = require('express');
 var moment = require('moment');
+var formidable = require('formidable');
+
 var router = express.Router();
 
 var tweet = require('../models/tweet');
@@ -67,10 +69,10 @@ module.exports = function(passport){
 		res.redirect('/home');
   });
 
-	/* /Profile */
+	/* /profile */
 
 	router.get('/profile', isAuthenticated, function(req, res){
-				res.render('profile', { user: req.user});
+				res.render('profile', { user: req.user, name_picture: req.user.picture});
 			});
 
 	router.post('/profile', isAuthenticated, function(req, res){
@@ -82,6 +84,18 @@ module.exports = function(passport){
 	router.get('/publicprofile', isAuthenticated, function(req, res){
 				res.render('publicprofile', { user: req.user});
 			});
+
+	// upload profile picture
+	router.post('/upload', isAuthenticated, function(req, res) {
+		var form = new formidable.IncomingForm();
+		form.uploadDir = "./public/uploads/pictures";
+
+		form.parse(req, function (err, fields, files) {
+            var name_picture_up = files.upload.path.substring(24);
+						User.update({username: req.user.username}, {$set: { picture: name_picture_up}}, { upsert: true }, function(){});
+        });
+		res.redirect('/home');
+		});
 
 	/* logout */
 	router.get('/signout', function(req, res) {

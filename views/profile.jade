@@ -46,6 +46,7 @@ html(lang='en')
                 span.glyphicon.glyphicon-off
     br
     br
+
     br
     br
     .container
@@ -55,7 +56,12 @@ html(lang='en')
             h1  #{user.username}
             hr
           .col-md-6
-            img.img-responsive.img-circle(src='assets/img/profilebean.jpg', alt='profilepic')
+            img.img-responsive.img-circle(src='./uploads/pictures/#{name_picture}', alt='Photo de profil !')
+            form(action='/upload', enctype='multipart/form-data', method='post')
+                input(type='file', name='upload', multiple='multiple')
+                br
+                input(type='submit', value='Upload')
+                br
         .col-md-6
           h2 Update your informations
           br

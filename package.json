@@ -19,6 +19,7 @@
     "express-session": "~1.0.4",
     "bcrypt-nodejs" : "*",
     "connect-flash" : "*",
-    "moment": "~2.9.0"
+    "moment": "~2.9.0",
+    "formidable": "1.0.17"
   }
 }
