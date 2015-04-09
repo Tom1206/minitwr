@@ -82,7 +82,6 @@ module.exports = function(passport){
 	});
 
 	/* /profile */
->>>>>>> a835012794ed6c58a69caaee6d8b237032e1189f
 
 	router.get('/profile', isAuthenticated, function(req, res){
 				res.render('profile', { user: req.user, name_picture: req.user.picture});
@@ -96,7 +95,7 @@ module.exports = function(passport){
 	router.get('/publicprofile', isAuthenticated, function(req, res){
 				res.render('publicprofile', { user: req.user});
 			});
-			
+
 	// upload profile picture
 	router.post('/upload', isAuthenticated, function(req, res) {
 		var form = new formidable.IncomingForm();
