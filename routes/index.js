@@ -93,7 +93,10 @@ module.exports = function(passport){
 	});
 
 	router.get('/publicprofile', isAuthenticated, function(req, res){
-				res.render('publicprofile', { user: req.user});
+				tweet.find({id: req.user._id}).limit(10).sort({date: -1}).exec( function (err, tweets) {
+						if (err) return console.error(err);
+						res.render('publicprofile', { user: req.user, tweet: tweets});
+				});
 			});
 
 	// upload profile picture
