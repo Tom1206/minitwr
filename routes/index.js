@@ -70,15 +70,14 @@ module.exports = function(passport){
   });
 
 
+/* search tool */
+
 	router.post('/search', isAuthenticated, function(req, res) {
-		tweet.limit(10).find({tweet: req.body.research}, function(err,doc) {
-			if( err || !docs) console.log("No user found");
-				User.limit(10).find({user: req.body.research}, function(err,obj) {
-					if( err || !docs) console.log("No user found");
-				 	console.log(obj);
-					console.log(doc);
-				});
+		tweet.find({tweet: req.body.research}, function(err,tweets) {
+			User.find({username: req.body.research}, function(err,users) {
+				res.render('search', {user: req.user, tweets: tweets, users: users});
 			});
+		});
 	});
 
 	/* /profile */

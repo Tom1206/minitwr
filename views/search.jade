@@ -5,7 +5,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
-    title Twitchers
+    title Twitchers - Profile
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custom styles
@@ -19,8 +19,8 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='home')
-            span.glyphicon.glyphicon-leaf
+          a.navbar-brand(href='/home')
+            span.glyphicon.glyphicon-leaf &nbsp
           a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
@@ -39,7 +39,7 @@ html(lang='en')
               a(title='Messages', href='#')
                 span.glyphicon.glyphicon-envelope
             li
-              a(title=' modify profile', href='/profile')
+              a(title='modify profile', href='/profile')
                 span.glyphicon.glyphicon-cog
             li
               a(title='LogOut', href='/signout')
@@ -47,43 +47,27 @@ html(lang='en')
     br
     br
     br
+    br
 
-    .container
-      .row
-        .col-md-3
-          img.img-responsive(src='assets/img/bird1.png', alt='bird')
-        br
-        br
-        br
-        br
-        .col-md-6
-          ul.list-inline.center
-            li
-              a(title='Add picture')
-                span.glyphicon.glyphicon-picture
-            li
-              a(title='Add location')
-                span.glyphicon.glyphicon-map-marker
-            li
-              a(title='Add photo album')
-                span.glyphicon.glyphicon-folder-open
-          form(role='form', action='/home', method='post', enctype='plain')
-            .form-group
-              input.form-control(cols='89', rows='2',type='text', name='Tweet', placeholder='What did you see ?')
-              button.btn.btn-default.pull-right(style='margin-top:2px;', type='submit') Send
-
+    script.
+      var j=0;
+      var users= !{JSON.stringify(users)};
+      while(users[j].username != null)
+      {
+        document.write(users[j].username);
+        document.write('<br/>');
+        j++;
+      }
     .container
       script.
-        i=0;
-        var tweets= !{JSON.stringify(tweet)};
+        var i=0;
+        var tweets= !{JSON.stringify(tweets)};
         var user= !{JSON.stringify(user)};
         while (tweets[i].nickname != null)
         {
-          document.write('<div class="container">');
           document.write('<div class="row">');
-          document.write('<div class="col-md-6 col-md-offset-3 boxtweets">')
+          document.write('<div class="col-md-6 col-md-offset-2 boxtweets">');
           document.write('<div class="tweethead">');
-
           if (tweets[i].id == user._id)
           {
             document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
@@ -93,7 +77,6 @@ html(lang='en')
             document.write('</div>');
             document.write('</form>');
           }
-
           document.write('<p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div>');
           document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
           document.write('<div id="footertweet"><p>'+tweets[i].date+'</p>');
@@ -101,31 +84,6 @@ html(lang='en')
           document.write('</div>');
           document.write('</div>');
           document.write('</div>');
-          document.write('</div>');
           document.write('<br/>');
           i++;
         }
-      script.
-        var i=i+10;
-        if(i%10==0 && i!=10)
-        {
-          document.write('<div class="container">');
-          document.write('<div class="row">');
-          document.write('<div class="col-md-7">');
-          document.write('<form role="form" action="/affichetweet" method="post" enctype="plain">');
-          document.write('<div class="form-group">');
-          document.write('<input type="hidden" name="nbtweet" class="form-control" value="' + i + '">');
-          document.write('<button type="submit" class="btn btn-default pull-right">More Tweets</button>');
-          document.write('</div>');
-          document.write('</form>');
-          document.write('</div>');
-          document.write('</div>');
-          document.write('</div>');
-        }
-
-
-
-    br
-
-    // Bootstrap core JavaScript
-    script(src='assets/js/bootstrap.js')
