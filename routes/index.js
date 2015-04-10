@@ -1,6 +1,7 @@
 var express = require('express');
 var moment = require('moment');
 var formidable = require('formidable');
+var geoip = require('geoip-lite');
 
 var router = express.Router();
 
@@ -64,7 +65,10 @@ module.exports = function(passport){
 
   router.post('/home', isAuthenticated, function(req, res) {
 		var date = moment().format('DD/MM/YYYY, HH:mm');
-		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
+		var ip = req.ip.substring(7);
+		var geo = geoip.lookup(ip);
+
+		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, location: geo.country, date: date, id: req.user._id});
 		newtweet.save();
 		res.redirect('/home');
   });

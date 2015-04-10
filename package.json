@@ -20,6 +20,7 @@
     "bcrypt-nodejs" : "*",
     "connect-flash" : "*",
     "moment": "~2.9.0",
-    "formidable": "1.0.17"
+    "formidable": "1.0.17",
+    "geoip-lite": "1.1.6"
   }
 }
