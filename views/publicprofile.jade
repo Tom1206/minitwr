@@ -20,7 +20,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
           a.navbar-brand(href='/home')
-            span.glyphicon.glyphicon-leaf &nbsp
+            span.glyphicon.glyphicon-leaf
           a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
@@ -102,4 +102,21 @@ html(lang='en')
                 document.write('</div>');
                 document.write('<br/>');
                 i++;
+              }
+            script.
+              var i=i+10;
+              if(i%10==0 && i!=10)
+              {
+                document.write('<div class="container">');
+                document.write('<div class="row">');
+                document.write('<div class="col-md-7">');
+                document.write('<form role="form" action="/publicprofile" method="post" enctype="plain">');
+                document.write('<div class="form-group">');
+                document.write('<input type="hidden" name="nbtweet" class="form-control" value="' + i + '">');
+                document.write('<button type="submit" class="btn btn-default pull-right">More Tweets</button>');
+                document.write('</div>');
+                document.write('</form>');
+                document.write('</div>');
+                document.write('</div>');
+                document.write('</div>');
               }

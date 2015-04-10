@@ -98,6 +98,13 @@ module.exports = function(passport){
 				});
 			});
 
+	router.post('/publicprofile', isAuthenticated, function(req, res){
+				tweet.find({id: req.user._id}).limit(req.body.nbtweet).sort({date: -1}).exec( function (err, tweets) {
+				  if (err) return console.error(err);
+					res.render('publicprofile', { user: req.user, tweet: tweets});
+				});
+			});
+
 	// upload profile picture
 	router.post('/upload', isAuthenticated, function(req, res) {
 		var form = new formidable.IncomingForm();

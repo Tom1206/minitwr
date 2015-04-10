@@ -77,7 +77,7 @@ html(lang='en')
         i=0;
         var tweets= !{JSON.stringify(tweet)};
         var user= !{JSON.stringify(user)};
-        while (tweets[i].nickname != null)
+        while (tweets[i].nickname != "undefined")
         {
           document.write('<div class="container">');
           document.write('<div class="row">');
