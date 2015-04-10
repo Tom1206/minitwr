@@ -20,7 +20,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
           a.navbar-brand(href='/home')
-            span.glyphicon.glyphicon-leaf &nbsp
+            span.glyphicon.glyphicon-leaf
           a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
@@ -110,6 +110,7 @@ html(lang='en')
                         document.write('<option value="Deutschland", selected="selected"> Deutschland </option>');
                         document.write('<option value="France"> France </option>');
                         document.write('<option value="USA"> USA </option>');
+                        document.write('<option value="PHPland"> PHPland </option>');
                         document.write('<option value="other"> other </option>');
                     }
                     else if (user.pays == "France")
@@ -118,6 +119,7 @@ html(lang='en')
                       document.write('<option value="Deutschland"> Deutschland </option>');
                       document.write('<option value="France", selected="selected"> France </option>');
                       document.write('<option value="USA"> USA </option>');
+                      document.write('<option value="PHPland"> PHPland </option>');
                       document.write('<option value="other"> other </option>');
                     }
                     else if (user.pays == "USA")
@@ -125,7 +127,17 @@ html(lang='en')
                       document.write('<option value=""> </option>');
                       document.write('<option value="Deutschland"> Deutschland </option>');
                       document.write('<option value="France""> France </option>');
-                      document.write('<option value="USA", selected="selected> USA </option>');
+                      document.write('<option value="USA", selected="selected"> USA </option>');
+                      document.write('<option value="PHPland"> PHPland </option>');
+                      document.write('<option value="other"> other </option>');
+                    }
+                    else if (user.pays == "PHPland")
+                    {
+                      document.write('<option value=""> </option>');
+                      document.write('<option value="Deutschland"> Deutschland </option>');
+                      document.write('<option value="France""> France </option>');
+                      document.write('<option value="USA"> USA </option>');
+                      document.write('<option value="PHPland", selected="selected"> PHPland </option>');
                       document.write('<option value="other"> other </option>');
                     }
                     else if (user.pays == "other")
@@ -134,7 +146,8 @@ html(lang='en')
                       document.write('<option value="Deutschland"> Deutschland </option>');
                       document.write('<option value="France""> France </option>');
                       document.write('<option value="USA"> USA </option>');
-                      document.write('<option value="other", selected="selected> other </option>');
+                      document.write('<option value="PHPland"> PHPland </option>');
+                      document.write('<option value="other", selected="selected"> other </option>');
                     }
                     else
                     {
@@ -142,6 +155,7 @@ html(lang='en')
                       document.write('<option value="Deutschland"> Deutschland </option>');
                       document.write('<option value="France""> France </option>');
                       document.write('<option value="USA"> USA </option>');
+                      document.write('<option value="PHPland"> PHPland </option>');
                       document.write('<option value="other"> other </option>');
                     }
 
