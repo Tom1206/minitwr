@@ -12,6 +12,8 @@ html(lang='en')
     link(href='assets/css/style.css', rel='stylesheet')
     script(src='assets/js/jquery.min.js')
   body
+    script(src='/socket.io/socket.io.js')
+    
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
       .container
@@ -52,19 +54,28 @@ html(lang='en')
     br
     .container
       .row
-        .col-md-3.pull-left
-          p
-            Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-            Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-            Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-        .col-md-7.pull-left
+        .col-md-3.col-sm-3.pull-left
+          p.
+            Utilisateur 1
+          p.
+            Utilisateur 2
+          p.
+            Utilisateur 3
+          p.
+            Utilisateur 4
+
+        .col-md-7.col-sm-7.pull-left
+          form(role='form', action='/profile', method='post', enctype='plain')
           .row
-              p
+              p.
                 Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
                 Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
                 Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
           .row
-              p
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
+              .col-md-11.col-sm-11.pull-left
+                textarea(class="form-control" rows='3',name='message', placeholder='Your message')
+              .col-md-1.col-sm-1.pull-left
+                .input-group-btn
+                  .form-group
+                    button.btn.btn-default(type='submit')
+                      | Send
