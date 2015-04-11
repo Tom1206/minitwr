@@ -36,7 +36,7 @@ html(lang='en')
               a(title='Home', href='/home')
                 span.glyphicon.glyphicon-home
             li
-              a(title='Messages', href='#')
+              a(title='Messages', href='/message')
                 span.glyphicon.glyphicon-envelope
             li
               a(title='modify profile', href='/profile')
@@ -48,17 +48,27 @@ html(lang='en')
     br
     br
     br
-
-    script.
-      var j=0;
-      var users= !{JSON.stringify(users)};
-      while(users[j].username != null)
-      {
-        document.write(users[j].username);
-        document.write('<br/>');
-        j++;
-      }
-    .container
+.container
+  .row
+    .col-md-12
+      h2.center  Users
+      hr
+      .center
+        script.
+          var j=0;
+          var users= !{JSON.stringify(users)};
+          while(users[j].username != null)
+          {
+            document.write(users[j].username);
+            document.write('<br/>');
+            j++;
+          }
+        br
+        br
+  .container
+    .col-md-12
+        h2.center Tweets
+        hr
       script.
         var i=0;
         var tweets= !{JSON.stringify(tweets)};
@@ -66,7 +76,7 @@ html(lang='en')
         while (tweets[i].nickname != null)
         {
           document.write('<div class="row">');
-          document.write('<div class="col-md-6 col-md-offset-2 boxtweets">');
+          document.write('<div class="col-md-6 col-md-offset-3 boxtweets">');
           document.write('<div class="tweethead">');
           if (tweets[i].id == user._id)
           {

@@ -36,7 +36,7 @@ html(lang='en')
               a(title='Home', href='/home')
                 span.glyphicon.glyphicon-home
             li
-              a(title='Messages', href='#')
+              a(title='Messages', href='/message')
                 span.glyphicon.glyphicon-envelope
             li
               a(title='modify profile', href='/profile')
@@ -56,7 +56,7 @@ html(lang='en')
             h1  #{user.username}
             hr
           .col-md-6
-            img.img-responsive.img-circle(src='./uploads/pictures/#{name_picture}', alt='Photo de profil !')
+            img.img-responsive.img-rounded(src='./uploads/pictures/#{name_picture}', alt='Photo de profil !')
             form(action='/upload', enctype='multipart/form-data', method='post')
                 input(type='file', name='upload', multiple='multiple')
                 br
