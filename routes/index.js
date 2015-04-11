@@ -1,7 +1,9 @@
 var express = require('express');
 var moment = require('moment');
 var formidable = require('formidable');
-var geoip = require('geoip-lite');
+var request = require('request');
+
+var gmKey = '';
 
 var router = express.Router();
 
@@ -40,7 +42,6 @@ module.exports = function(passport){
 	}));
 
 	/* /home */
-
 	router.get('/home', isAuthenticated, function(req, res){
 				tweet.find().limit(10).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
@@ -65,14 +66,19 @@ module.exports = function(passport){
 
   router.post('/home', isAuthenticated, function(req, res) {
 		var date = moment().format('DD/MM/YYYY, HH:mm');
-		var ip = req.ip.substring(7);
-		var geo = geoip.lookup(ip);
+		var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + req.body.latitude + ',' + req.body.longitude +'&key=' + gmKey;
 
-		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, location: geo.country, date: date, id: req.user._id});
+		request({url: apiCall,json: true}, function (error, response, body) {
+			if(!error && response.statusCode == 200) {
+				console.log(body.results[1].formatted_address);
+			}
+		});
+
+		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet,date: date, id: req.user._id});
 		newtweet.save();
+
 		res.redirect('/home');
   });
-
 
 /* search tool */
 
@@ -109,7 +115,7 @@ module.exports = function(passport){
 				});
 			});
 
-	// upload profile picture
+	/* upload profile picture */
 	router.post('/upload', isAuthenticated, function(req, res) {
 		var form = new formidable.IncomingForm();
 		form.uploadDir = "./public/uploads/pictures";
