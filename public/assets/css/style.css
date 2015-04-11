@@ -52,6 +52,11 @@
 	font-family:tahoma;
 }
 
+.overflow
+{
+	height: 20em;;
+	overflow: auto;
+}
 
 p
 {
@@ -73,7 +78,7 @@ p
 	font-family:"tahoma";
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
 {
     color: green;
 }
@@ -134,8 +139,3 @@ p
 #wrapper {
   border: 1px #e4e4e4 solid;
 }
-
-
-
-
-
