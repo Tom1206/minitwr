@@ -1,7 +1,6 @@
 var express = require('express');
 var moment = require('moment');
 var formidable = require('formidable');
-var geoip = require('geoip-lite');
 
 var router = express.Router();
 
@@ -65,10 +64,7 @@ module.exports = function(passport){
 
   router.post('/home', isAuthenticated, function(req, res) {
 		var date = moment().format('DD/MM/YYYY, HH:mm');
-		var ip = req.ip.substring(7);
-		var geo = geoip.lookup(ip);
-
-		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, location: geo.country, date: date, id: req.user._id});
+		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
 		newtweet.save();
 		res.redirect('/home');
   });
@@ -109,6 +105,11 @@ module.exports = function(passport){
 				});
 			});
 
+	//message
+	router.get('/message', isAuthenticated, function(req, res){
+		res.render('message', {user: req.user});
+	});
+
 	// upload profile picture
 	router.post('/upload', isAuthenticated, function(req, res) {
 		var form = new formidable.IncomingForm();
@@ -126,6 +127,8 @@ module.exports = function(passport){
 		req.logout();
 		res.redirect('/');
 	});
+
+
 
 	return router;
 }
