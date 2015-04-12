@@ -115,11 +115,6 @@ module.exports = function(passport){
 				});
 			});
 
-	// message
-	router.get('/message', isAuthenticated, function(req, res){
-		res.render('message', {user: req.user});
-	});
-
 	/* upload profile picture */
 	router.post('/upload', isAuthenticated, function(req, res) {
 		var form = new formidable.IncomingForm();
