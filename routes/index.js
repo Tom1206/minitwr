@@ -1,9 +1,4 @@
 var express = require('express');
-var moment = require('moment');
-var formidable = require('formidable');
-var request = require('request');
-
-var gmKey = '';
 
 var router = express.Router();
 
