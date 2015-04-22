@@ -31,17 +31,14 @@ module.exports = function(passport){
 				res.redirect('profile');
 	});
 
-	router.get('/publicprofile', isAuthenticated, function(req, res){
-				tweet.find({id: req.user._id}).limit(10).sort({date: -1}).exec(function (err, tweets) {
-						if (err) return console.error(err);
-						res.render('publicprofile', { user: req.user, tweet: tweets});
-				});
-			});
-
-	router.post('/publicprofile', isAuthenticated, function(req, res){
-				tweet.find({id: req.user._id}).limit(req.body.nbtweet).sort({date: -1}).exec( function (err, tweets) {
-				  if (err) return console.error(err);
-					res.render('publicprofile', { user: req.user, tweet: tweets});
+	router.get('/public/:rId', isAuthenticated, function(req, res){
+				User.find({_id: req.params.rId}).exec(function (err, rUser) {
+					if (err) return res.render('error', {message: err.message,error: err});
+					else {
+							tweet.find({id: rUser[0]._id}).limit(10).sort({date: -1}).exec(function (err, tweets) {
+							res.render('publicprofile', { user: rUser[0], tweet: tweets});
+							});
+					}
 				});
 			});
 

@@ -22,7 +22,7 @@ html(lang='en')
             span.icon-bar
           a.navbar-brand(href='home')
             span.glyphicon.glyphicon-leaf
-          a.navbar-brand(href='publicprofile')
+          a.navbar-brand(href='public/#{user._id}')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left

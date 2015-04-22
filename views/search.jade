@@ -22,7 +22,7 @@ html(lang='en')
             span.icon-bar
           a.navbar-brand(href='home')
             span.glyphicon.glyphicon-leaf
-          a.navbar-brand(href='publicprofile')
+          a.navbar-brand(href='public/#{user._id}')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left
@@ -62,7 +62,7 @@ html(lang='en')
           var users= !{JSON.stringify(users)};
           while(users[j].username != null)
           {
-            document.write(users[j].username);
+            document.write('<a href="public/' + users[j]._id + '">' + users[j].username + "</a>");
             document.write('<br/>');
             j++;
           }
@@ -90,7 +90,7 @@ html(lang='en')
             document.write('</div>');
             document.write('</form>');
           }
-          document.write('<p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div>');
+          document.write('<a href="public/' + tweets[i].id + '"> <p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div></a>');
           document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
           document.write('<div id="footertweet"><p>'+tweets[i].date+'</p>');
 
