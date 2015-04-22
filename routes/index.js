@@ -32,15 +32,6 @@ module.exports = function(passport){
 		failureFlash : true
 	}));
 
-/* search tool */
-
-	router.post('/search', isAuthenticated, function(req, res) {
-		tweet.find({tweet: new RegExp(req.body.research, 'i')}).sort({date: -1}).exec(function(err,tweets) {
-			User.find({username: new RegExp(req.body.research, 'i')}, function(err,users) {
-				res.render('search', {user: req.user, tweets: tweets, users: users});
-			});
-		});
-	});
 
 	/* logout */
 	router.get('/signout', function(req, res) {
