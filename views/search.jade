@@ -5,7 +5,7 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
-    title Twitchers - Profile
+    title Twitchers
     script(src='assets/js/jquery.min.js')
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
@@ -26,15 +26,14 @@ html(lang='en')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left
+            form.navbar-form(role='search', action='/search', method='post', enctype='plain')
+              .input-group
+                input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
+                .input-group-btn
+                  button.btn.btn-default(type='submit')
+                    span.glyphicon.glyphicon-search
+          .col-sm-3.col-md-3.pull-left
             ul.nav.navbar-nav
-              li
-                form.navbar-form(role='search', action='/search', method='post', enctype='plain')
-                  .input-group
-                    input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
-                    .input-group-btn
-                      button.btn.btn-default(type='submit')
-                        span.glyphicon.glyphicon-search
-
               li
                 a(title='Home', href='/home')
                   span.glyphicon.glyphicon-home
