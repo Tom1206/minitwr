@@ -6,6 +6,7 @@ html(lang='en')
     meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
     title Twitchers - Profile
+    script(src='assets/js/jquery.min.js')
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custom styles
@@ -19,34 +20,35 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/home')
+          a.navbar-brand(href='home')
             span.glyphicon.glyphicon-leaf
           a.navbar-brand(href='publicprofile')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left
-            form.navbar-form(role='search', action='/search', method='post', enctype='plain')
-              .input-group
-                input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
-                .input-group-btn
-                  button.btn.btn-default(type='submit')
-                    span.glyphicon.glyphicon-search
-          ul.nav.navbar-nav
-            li
-              a(title='Home', href='/home')
-                span.glyphicon.glyphicon-home
-            li
-              a(title='Messages', href='/message')
-                span.glyphicon.glyphicon-envelope
-            li
-              a(title='modify profile', href='/profile')
-                span.glyphicon.glyphicon-cog
-            li
-              a(title='LogOut', href='/signout')
-                span.glyphicon.glyphicon-off
-    br
-    br
+            ul.nav.navbar-nav
+              li
+                form.navbar-form(role='search', action='/search', method='post', enctype='plain')
+                  .input-group
+                    input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
+                    .input-group-btn
+                      button.btn.btn-default(type='submit')
+                        span.glyphicon.glyphicon-search
 
+              li
+                a(title='Home', href='/home')
+                  span.glyphicon.glyphicon-home
+              li
+                a(title='Messages', href='/message')
+                  span.glyphicon.glyphicon-envelope
+              li
+                a(title=' modify profile', href='/profile')
+                  span.glyphicon.glyphicon-cog
+              li
+                a(title='LogOut', href='/signout')
+                  span.glyphicon.glyphicon-off
+    br
+    br
     br
     br
     .container
@@ -167,3 +169,7 @@ html(lang='en')
                 br
                 br
                 button.btn.btn-large.btn-success(type='submit') Submit !
+
+  script(src='scripts.js')
+  // Bootstrap core JavaScript
+  script(src='assets/js/bootstrap.js')
