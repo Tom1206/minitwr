@@ -1,5 +1,6 @@
 var express = require('express');
 var formidable = require('formidable');
+var fs = require('fs');
 
 var router = express.Router();
 
@@ -43,6 +44,14 @@ module.exports = function(passport){
   router.post('/upload', isAuthenticated, function(req, res) {
   	var form = new formidable.IncomingForm();
   	form.uploadDir = "./public/uploads/pictures";
+
+		// delete the old picture
+		if(req.user.picture != "default")
+		{
+			fs.unlink("public/uploads/pictures/" + req.user.picture, function(err) {
+				if(err) console.log(err);
+			})
+		}
 
   	form.parse(req, function (err, fields, files) {
             var name_picture_up = files.upload.path.substring(24);
