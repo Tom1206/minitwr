@@ -26,15 +26,14 @@ html(lang='en')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left
+            form.navbar-form(role='search', action='/search', method='post', enctype='plain')
+              .input-group
+                input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
+                .input-group-btn
+                  button.btn.btn-default(type='submit')
+                    span.glyphicon.glyphicon-search
+          .col-sm-3.col-md-3.pull-left
             ul.nav.navbar-nav
-              li
-                form.navbar-form(role='search', action='/search', method='post', enctype='plain')
-                  .input-group
-                    input.form-control(type='text', placeholder='Search (profile, tweet, etc...)', name='research')
-                    .input-group-btn
-                      button.btn.btn-default(type='submit')
-                        span.glyphicon.glyphicon-search
-
               li
                 a(title='Home', href='/home')
                   span.glyphicon.glyphicon-home
@@ -65,7 +64,7 @@ html(lang='en')
               a(title='Add picture')
                 span.glyphicon.glyphicon-picture
             li
-              a.alert(title='Add location', href='#', onClick="addLocation()")
+              a(title='Add location', href='#', onClick="addLocation()")
                 span.glyphicon.glyphicon-map-marker
             li
               a(title='Add photo album')
@@ -131,16 +130,6 @@ html(lang='en')
 
 
     br
-
     script(src='scripts.js')
-    // bootbox code
-    script(src='assets/js/bootbox.min.js')
-    script.
-      $(document).on("click", ".alert", function(e) {
-      bootbox.alert("Congratulation ! Your location has been successfully loaded !", function() {
-      console.log("Alert Callback");
-      });
-      });
-
     // Bootstrap core JavaScript
     script(src='assets/js/bootstrap.js')
