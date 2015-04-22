@@ -30,5 +30,14 @@ module.exports = function(passport){
 		});
 	});
 
+	router.get('/search/:tag', isAuthenticated, function(req, res){
+				tweet.find({tweet: new RegExp(req.params.tag, 'i')}).exec(function (err, tweets) {
+					if (err) return res.render('error', {message: err.message,error: err});
+					else {
+						res.render('search', {user: req.user, tweets: tweets});
+					}
+				});
+			});
+
   return router;
 }
