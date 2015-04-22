@@ -65,7 +65,7 @@ html(lang='en')
               a(title='Add picture')
                 span.glyphicon.glyphicon-picture
             li
-              a(title='Add location', href='#', onClick="addLocation()")
+              a.alert(title='Add location', href='#', onClick="addLocation()")
                 span.glyphicon.glyphicon-map-marker
             li
               a(title='Add photo album')
@@ -131,6 +131,16 @@ html(lang='en')
 
 
     br
+
     script(src='scripts.js')
+    // bootbox code
+    script(src='assets/js/bootbox.min.js')
+    script.
+      $(document).on("click", ".alert", function(e) {
+      bootbox.alert("Congratulation ! Your location has been successfully loaded !", function() {
+      console.log("Alert Callback");
+      });
+      });
+
     // Bootstrap core JavaScript
     script(src='assets/js/bootstrap.js')
