@@ -1,4 +1,7 @@
 var express = require('express');
+var moment = require('moment');
+var formidable = require('formidable');
+var request = require('request');
 
 var router = express.Router();
 
@@ -17,32 +20,15 @@ var isAuthenticated = function (req, res, next) {
 
 module.exports = function(passport){
 
-	/* / */
-	router.get('/', function(req, res) {
-		res.render('index', { message: req.flash('message') });
+
+  /* search tool */
+	router.post('/search', isAuthenticated, function(req, res) {
+		tweet.find({tweet: new RegExp(req.body.research, 'i')}).sort({date: -1}).exec(function(err,tweets) {
+			User.find({username: new RegExp(req.body.research, 'i')}, function(err,users) {
+				res.render('search', {user: req.user, tweets: tweets, users: users});
+			});
+		});
 	});
 
-	/* /login */
-	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/home',
-		failureRedirect: '/',
-		failureFlash : true
-	}));
-
-	/* /signup */
-	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/home',
-		failureRedirect: '/',
-		failureFlash : true
-	}));
-
-
-	/* logout */
-	router.get('/signout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
-
-
-	return router;
+  return router;
 }

@@ -47,10 +47,12 @@ var routes = require('./routes/index')(passport);
 var messages= require('./routes/messages')(passport);
 var profiles= require('./routes/profiles')(passport);
 var home= require('./routes/home')(passport);
+var search= require('./routes/search')(passport);
 app.use('/', routes);
 app.use('/', messages);
 app.use('/', profiles);
 app.use('/', home);
+app.use('/', search);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

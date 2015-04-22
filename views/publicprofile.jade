@@ -18,9 +18,9 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='home')
+          a.navbar-brand(href='/home')
             span.glyphicon.glyphicon-leaf
-          a.navbar-brand(href='publicprofile')
+          a.navbar-brand(href='#{user._id}')
             | #{user.username}
         .navbar-collapse.collapse
           .col-sm-9.col-md-7.pull-left
@@ -52,26 +52,26 @@ html(lang='en')
       .row
         .col-md-12
           .col-md-6
-            h1  #{user.username}
+            h1  #{rUser.username}
             hr
           .col-md-6
-            img.img-responsive.img-rounded(src='./uploads/pictures/#{user.picture}', alt='profilepic')
+            img.img-responsive.img-rounded(src='../uploads/pictures/#{rUser.picture}', alt='profilepic')
         .col-md-6
           p
             |Email:
             br
-            |#{user.email}
+            |#{rUser.email}
             br
             br
-            |Sexe: #{user.sexe}
+            |Sexe: #{rUser.sexe}
             br
             br
-            |Country: #{user.pays}
+            |Country: #{rUser.pays}
             br
             br
             |Description :
             br
-            |#{user.description}
+            |#{rUser.description}
             br
             br
 
@@ -84,6 +84,7 @@ html(lang='en')
                 document.write('<div class="row">');
                 document.write('<div class="col-md-10 col-md-offset-0 boxtweets">');
                 document.write('<div class="tweethead">');
+
                 if (tweets[i].id == user._id)
                 {
                   document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
