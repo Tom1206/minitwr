@@ -168,7 +168,18 @@ html(lang='en')
                 br
                 br
                 button.btn.btn-large.btn-success(type='submit') Submit !
+  br
+  .container
+    form(role='form', action='/deleteaccount', method='post', enctype='plain')
+      .form-group
+        .center
+          input.form-control(type='hidden', name='idaccount', value='#{user._id}')
+          button.btn.btn-large.btn-danger(type='submit') Delete my account
+
+
 
   script(src='scripts.js')
+
+
   // Bootstrap core JavaScript
-  script(src='assets/js/bootstrap.js')
+  script(src='../assets/js/bootstrap.js')
