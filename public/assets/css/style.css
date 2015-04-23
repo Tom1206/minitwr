@@ -15,7 +15,17 @@
 .nickname
 {
 	left:0px;
+  color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
 
+.nickname:hover
+{
+	left:0px;
+  color: black;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .number

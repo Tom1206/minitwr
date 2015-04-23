@@ -61,7 +61,7 @@ html(lang='en')
           var users= !{JSON.stringify(users)};
           while(users[j].username != null)
           {
-            document.write('<a href="public/' + users[j]._id + '">' + users[j].username + "</a>");
+            document.write('<a href="public/' + users[j]._id + '" class="nickname">' + users[j].username + "</a>");
             document.write('<br/>');
             j++;
           }
@@ -90,7 +90,7 @@ html(lang='en')
               document.write('</div>');
               document.write('</form>');
             }
-            document.write('<a href="public/' + tweets[j].id + '"> <p class="nickname"><strong>&nbsp' + tweets[j].nickname + '</strong></p></div></a>');
+            document.write('<a href="public/' + tweets[j].id + '" class="nickname">&nbsp' + tweets[j].nickname + '</div></a>');
             document.write('<div class="bodytweet">'+tweets[j].tweet+'</div>');
             document.write('<div id="footertweet"><p>'+tweets[j].date+tweets[j].location+'</p>');
 
@@ -125,7 +125,7 @@ html(lang='en')
             document.write('</div>');
             document.write('</form>');
           }
-          document.write('<a href="public/' + tweets[i].id + '"> <p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div></a>');
+          document.write('<a href="public/' + tweets[i].id + '" class="nickname" >&nbsp' + tweets[i].nickname + '</div></a>');
           document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
           document.write('<div id="footertweet"><p>'+tweets[i].date+tweets[i].location+'</p>');
 
