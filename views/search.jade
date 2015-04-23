@@ -72,37 +72,37 @@ html(lang='en')
       .col-md-12
         h2.center  Location
         hr
-        .center
-          script.
-            var j=0;
-            var tweets= !{JSON.stringify(loc)};
-            var user= !{JSON.stringify(user)};
-            while(tweets[j].location != null)
+        script.
+          var j=0;
+          var tweets= !{JSON.stringify(loc)};
+          var user= !{JSON.stringify(user)};
+          while (tweets[j].nickname != null)
+          {
+            document.write('<div class="row">');
+            document.write('<div class="col-md-6 col-md-offset-3 boxtweets">');
+            document.write('<div class="tweethead">');
+            if (tweets[j].id == user._id)
             {
-              document.write('<div class="row">');
-              document.write('<div class="col-md-6 col-md-offset-3 boxtweets">');
-              document.write('<div class="tweethead">');
-              if (tweets[j].id == user._id)
-              {
-                document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
-                document.write('<div class="form-group">');
-                document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[j]._id + '">');
-                document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:right; color:red; border: none; background: none; margin: 0px;"></button>');
-                document.write('</div>');
-                document.write('</form>');
-              }
-              document.write('<a href="public/' + tweets[j].id + '"> <p class="nickname"><strong>&nbsp' + tweets[j].nickname + '</strong></p></div></a>');
-              document.write('<div class="bodytweet">'+tweets[j].tweet+'</div>');
-              document.write('<div id="footertweet"><p>'+tweets[j].date+tweets[j].location+'</p>');
-
+              document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
+              document.write('<div class="form-group">');
+              document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[j]._id + '">');
+              document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:right; color:red; border: none; background: none; margin: 0px;"></button>');
               document.write('</div>');
-              document.write('</div>');
-              document.write('</div>');
-              document.write('<br/>');
-              j++;
+              document.write('</form>');
             }
-          br
-          br
+            document.write('<a href="public/' + tweets[j].id + '"> <p class="nickname"><strong>&nbsp' + tweets[j].nickname + '</strong></p></div></a>');
+            document.write('<div class="bodytweet">'+tweets[j].tweet+'</div>');
+            document.write('<div id="footertweet"><p>'+tweets[j].date+tweets[j].location+'</p>');
+
+            document.write('</div>');
+            document.write('</div>');
+            document.write('</div>');
+            document.write('<br/>');
+            j++;
+          }
+
+        br
+        br
   .container
     .col-md-12
         h2.center Tweets
@@ -127,7 +127,7 @@ html(lang='en')
           }
           document.write('<a href="public/' + tweets[i].id + '"> <p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div></a>');
           document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
-          document.write('<div id="footertweet"><p>'+tweets[i].date+'</p>');
+          document.write('<div id="footertweet"><p>'+tweets[i].date+tweets[i].location+'</p>');
 
           document.write('</div>');
           document.write('</div>');

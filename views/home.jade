@@ -99,7 +99,7 @@ html(lang='en')
             document.write('</form>');
           }
 
-          document.write('<p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div>');
+          document.write('<a href="public/' + tweets[i].id + '"> <p class="nickname"><strong>&nbsp' + tweets[i].nickname + '</strong></p></div></a>');
           document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
           document.write('<div id="footertweet"><p>'+tweets[i].date+tweets[i].location+'</p>');
 
