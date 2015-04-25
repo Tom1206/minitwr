@@ -33,12 +33,16 @@ module.exports = function(passport){
 	});
 
 	router.post('/deletetweet', isAuthenticated, function(req, res) {
-		console.log('id: ' + req.body.idtweet);
-		tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
-		if (err) return console.error(err);
-		res.redirect('/home');
-	  });
-  });
+		tweet.findById(req.body.idtweet, function (err, tweets) {
+			if(tweets.id == req.user._id){
+				tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
+				if (err) return console.error(err);
+				res.redirect('/home');
+		  	});
+			}
+			else res.render('404');
+  	});
+	});
 
 	/* POST /home - send a tweet */
   router.post('/home', isAuthenticated, function(req, res) {
