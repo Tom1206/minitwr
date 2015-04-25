@@ -42,8 +42,7 @@ module.exports = function(passport){
 	/* delete account */
 
 	router.post('/deleteaccount', isAuthenticated, function(req, res) {
-		console.log('id: ' + req.body.idaccount);
-		User.findByIdAndRemove(req.body.idaccount, function (err, account) {
+		User.findByIdAndRemove(req.user._id, function (err, account) {
 		if (err) return console.error(err);
 		res.redirect('/');
 		});

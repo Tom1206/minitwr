@@ -71,10 +71,10 @@ html(lang='en')
               form(role='form', action='/profile', method='post', enctype='plain')
                 .form-group
                   label(for='nickname') Nickname
-                  input#nickname.form-control(type='name', name='Nickname', value='#{user.username}')
+                  input#nickname.form-control(type='name', name='Nickname', value='#{user.username}', required='required')
                 .form-group
                   label(for='email1') Mail
-                  input#email1.form-control(type='email', name='Mail', value='#{user.email}')
+                  input#email1.form-control(type='email', name='Mail', value='#{user.email}', required='required')
                 .form-group
                   label
                     script.
@@ -173,7 +173,6 @@ html(lang='en')
     form(role='form', action='/deleteaccount', method='post', enctype='plain')
       .form-group
         .center
-          input.form-control(type='hidden', name='idaccount', value='#{user._id}')
           button.btn.btn-large.btn-danger(type='submit') Delete my account
 
 
