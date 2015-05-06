@@ -33,7 +33,7 @@ module.exports = function(passport){
 					if (err) return res.render('error', {message: err.message,error: err});
 					else {
 							tweet.find({id: rUser[0]._id}).limit(10).sort({date: -1}).exec(function (err, tweets) {
-							res.render('publicprofile', {user: req.user, rUser: rUser[0], tweet: tweets});
+							res.render('publicprofile', {user: req.user, rUser: rUser[0], tweet: tweets, nb: tweets.length});
 							});
 					}
 				});

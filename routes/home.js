@@ -48,8 +48,9 @@ module.exports = function(passport){
 	/* POST /home - send a tweet */
   router.post('/home', isAuthenticated, function(req, res) {
 		// Add the tweet to the database
-		var date = moment().format('DD/MM/YYYY, HH:mm');
+		var date = moment().format('YYYY/MM/DD, HH:mm');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
+		console.log(newtweet);
 		newtweet.save();
 
 		// Add the location to the tweet if necessary

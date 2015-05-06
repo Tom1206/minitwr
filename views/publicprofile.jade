@@ -77,51 +77,36 @@ html(lang='en')
             br
             br
 
-            script.
-              i=0;
-              var tweets= !{JSON.stringify(tweet)};
-              var user= !{JSON.stringify(user)};
-              while (tweets[i].nickname != null)
-              {
-                document.write('<div class="row">');
-                document.write('<div class="col-md-10 col-md-offset-0 boxtweets">');
-                document.write('<div class="tweethead">');
 
-                if (tweets[i].id == user._id)
-                {
-                  document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
-                  document.write('<div class="form-group">');
-                  document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[i]._id + '">');
-                  document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:right; color:red; border: none; background: none; margin: 0px;"></button>');
-                  document.write('</div>');
-                  document.write('</form>');
-                }
-                document.write('<a href="../public/' + tweets[i].id + '" class="nickname" >&nbsp' + tweets[i].nickname + '</div></a>');
-                document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
-                document.write('<div id="footertweet"><p>'+tweets[i].date+tweets[i].location+'</p>');
+            -var i=0
+            while i < nb
+              .container
+                .row
+                  .col-md-10.boxtweets
+                    .tweethead
+                      if tweet[i].id == user._id
+                        form(role='form', action='/deletetweet', method='post', enctype='plain')
+                          .form-group
+                            input.form-control(type='hidden', name='idtweet', value='#{tweet[i]._id}')
+                            button.glyphicon.glyphicon-remove-circle(type='submit', style='float:right; color:red; border: none; background: none; margin: 0px;')
+                      a.nickname(href="public/#{tweet[i].id}") #{tweet[i].nickname}
+                    .bodytweet
+                      span=tweet[i].tweet
+                    #footertweet
+                      p #{tweet[i].date}  #{tweet[i].location}
+                br
+                -i=i+1
 
-                document.write('</div>');
-                document.write('</div>');
-                document.write('</div>');
-                document.write('<br/>');
-                i++;
-              }
-            script.
-              var i=i+10;
-              if(i%10==0 && i!=10)
-              {
-                document.write('<div class="container">');
-                document.write('<div class="row">');
-                document.write('<div class="col-md-7">');
-                document.write('<form role="form" action="/publicprofile" method="post" enctype="plain">');
-                document.write('<div class="form-group">');
-                document.write('<input type="hidden" name="nbtweet" class="form-control" value="' + i + '">');
-                document.write('<button type="submit" class="btn btn-default pull-right">More Tweets</button>');
-                document.write('</div>');
-                document.write('</form>');
-                document.write('</div>');
-                document.write('</div>');
-                document.write('</div>');
-              }
+
+
+            -i=i+10;
+            if (i%10==0 && i!=10)
+              .container
+                .row
+                  .col-md-7
+                    form(role='form', action='/affichetweet', method='post', enctype='plain')
+                      .form-group
+                        input.form-control(type='hidden', name='nbtweet', value="#{i}")
+                        button.btn.btn-default.pull-right(type='submit') More Tweets
 
     script(src='../assets/js/bootstrap.js')
