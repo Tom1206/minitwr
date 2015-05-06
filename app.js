@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var moment = require('moment');
 var formidable = require('formidable');
-var http = require('http');
-var fs = require('fs');
+
 
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
@@ -15,6 +14,10 @@ mongoose.connect(dbConfig.url);
 
 var app = express();
 
+var app = require('express')(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    fs = require('fs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

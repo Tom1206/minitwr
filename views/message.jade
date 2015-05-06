@@ -11,6 +11,7 @@ html(lang='en')
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custom styles
     link(href='assets/css/style.css', rel='stylesheet')
+
   body
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
@@ -52,68 +53,45 @@ html(lang='en')
     br
     .container
       .row
-        .col-md-3.col-sm-3.pull-left
-          p.
-            Utilisateur 1
-          p.
-            Utilisateur 2
-          p.
-            Utilisateur 3
-          p.
-            Utilisateur 4
+        .col-md-2.col-sm-2.pull-left
+          form#write(action='/', method='post')
+            .input-group
+              input.form-control(type='text', name='who', id='who', placeholder='Who ?')
+              .input-group-btn
+                .form-group
+                  button.btn.btn-default(type='submit')
+                    span.glyphicon.glyphicon-pencil
 
         .col-md-7.col-sm-7.pull-left
           .row
             .overflow
-              p.
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
-                Un paragraphe est une section de texte en prose vouée au développement d'un point particulier souvent au moyen de plusieurs phrases, dans la continuité du précédent et du suivant.
-                Au plan typographique, le début d'un paragraphe est marqué par un léger renfoncement (alinéa) ou par un saut de ligne.
-                Le symbole du paragraphe est §. La fin d'un paragraphe était autrefois indiquée par un pied-de-mouche (¶).
+
           .row
-            form(role='form', action='/profile', method='post', enctype='plain')
+            form#newMessage(action='/', method='post')
               .col-md-11.col-sm-11.pull-left
-                textarea(class="form-control" rows='3',name='message', placeholder='Your message')
+                input.form-control(type='text', name='message', id='message', placeholder='Your message')
               .col-md-1.col-sm-1.pull-left
                 .input-group-btn
                   .form-group
-                    br
                     button.btn.btn-default(type='submit')
                       | Send
+
+    script(src='http://localhost:8080/socket.io/socket.io.js')
+    script.
+      var socket = io.connect('http://localhost:8080');
+      $('#newMessage').submit(function () {
+                    var message = $('#message').val();
+                    socket.emit('message', message); // Transmet le message aux autres
+                    $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
+                    return false; // Permet de bloquer l'envoi "classique" du formulaire
+                });
+
+      $('#write').submit(function () {
+                  var who = $('#who').val();
+                  socket.emit('write', who);
+                  $('#who').val('');
+                  return false;
+                });
 
     script(src='scripts.js')
     // Bootstrap core JavaScript

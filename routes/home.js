@@ -21,14 +21,15 @@ module.exports = function(passport){
 	router.get('/home', isAuthenticated, function(req, res){
 				tweet.find().limit(10).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
-				res.render('home', { user: req.user, tweet: tweets});
+				res.render('home', { user: req.user, tweet: tweets, nb: 10});
 			});
 	});
 
 	router.post('/affichetweet', isAuthenticated, function(req, res){
 				tweet.find().limit(req.body.nbtweet).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
-				res.render('home', { user: req.user, tweet: tweets});
+				console.log(tweets);
+				res.render('home', { user: req.user, tweet: tweets, nb: tweets.length});
 			});
 	});
 
