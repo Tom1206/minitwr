@@ -39,6 +39,18 @@ module.exports = function(passport){
 				});
 			});
 
+	/* delete tweet */
+	router.post('/deletetweetp', isAuthenticated, function(req, res) {
+		tweet.findById(req.body.idtweet, function (err, tweets) {
+			if(tweets.id == req.user._id){
+				tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
+				if (err) return console.error(err);
+				res.redirect('/public/'+req.user._id);
+		  	});
+			}
+			else res.render('404');
+  	});
+	});
 	/* delete account */
 
 	router.post('/deleteaccount', isAuthenticated, function(req, res) {

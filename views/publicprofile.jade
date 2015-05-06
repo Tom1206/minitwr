@@ -85,7 +85,7 @@ html(lang='en')
                   .col-md-10.boxtweets
                     .tweethead
                       if tweet[i].id == user._id
-                        form(role='form', action='/deletetweet', method='post', enctype='plain')
+                        form(role='form', action='/deletetweetp', method='post', enctype='plain')
                           .form-group
                             input.form-control(type='hidden', name='idtweet', value='#{tweet[i]._id}')
                             button.glyphicon.glyphicon-remove-circle(type='submit', style='float:right; color:red; border: none; background: none; margin: 0px;')
