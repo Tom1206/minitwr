@@ -28,7 +28,7 @@ html(lang='en')
           .col-sm-9.col-md-7.pull-left
             form.navbar-form(role='search', action='/search', method='post', enctype='plain')
               .input-group
-                input.form-control(type='text', placeholder='Search (profile, tweet, location, etc...)', name='research')
+                input.form-control(type='text', placeholder='Search (profile, tweet, location, etc...)', name='research', value='#{search}')
                 .input-group-btn
                   button.btn.btn-default(type='submit')
                     span.glyphicon.glyphicon-search
@@ -56,50 +56,37 @@ html(lang='en')
       h2.center  Users
       hr
       .center
-        script.
-          var j=0;
-          var users= !{JSON.stringify(users)};
-          while(users[j].username != null)
-          {
-            document.write('<a href="public/' + users[j]._id + '" class="nickname">' + users[j].username + "</a>");
-            document.write('<br/>');
-            j++;
-          }
-        br
-        br
+        -nbu= users.length
+        -var j=0
+        while j < nbu
+          a.nickname(href="public/#{users[j]._id}") #{users[j].username}
+          br
+          -j=j+1
+
   .container
     .row
       .col-md-12
         h2.center  Location
         hr
-        script.
-          var j=0;
-          var tweets= !{JSON.stringify(loc)};
-          var user= !{JSON.stringify(user)};
-          while (tweets[j].location != null)
-          {
-            document.write('<div class="row">');
-            document.write('<div class="col-md-6 col-md-offset-3 boxtweets">');
-            document.write('<div class="tweethead">');
-            if (tweets[j].id == user._id)
-            {
-              document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
-              document.write('<div class="form-group">');
-              document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[j]._id + '">');
-              document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:right; color:red; border: none; background: none; margin: 0px;"></button>');
-              document.write('</div>');
-              document.write('</form>');
-            }
-            document.write('<a href="public/' + tweets[j].id + '" class="nickname">&nbsp' + tweets[j].nickname + '</div></a>');
-            document.write('<div class="bodytweet">'+tweets[j].tweet+'</div>');
-            document.write('<div id="footertweet"><p>'+tweets[j].date+tweets[j].location+'</p>');
-
-            document.write('</div>');
-            document.write('</div>');
-            document.write('</div>');
-            document.write('<br/>');
-            j++;
-          }
+        -nbl=loc.length
+        -var i=0
+        while i < nbl
+          .container
+            .row
+              .col-md-6.col-md-offset-3.boxtweets
+                .tweethead
+                  if loc[i].id == user._id
+                    form(role='form', action='/deletetweet', method='post', enctype='plain')
+                      .form-group
+                        input.form-control(type='hidden', name='idtweet', value='#{loc[i]._id}')
+                        button.glyphicon.glyphicon-remove-circle(type='submit', style='float:right; color:red; border: none; background: none; margin: 0px;')
+                  a.nickname(href="public/#{loc[i].id}") #{loc[i].nickname}
+                .bodytweet
+                  span=loc[i].tweet
+                #footertweet
+                  p #{loc[i].date}  #{loc[i].location}
+            br
+            -i=i+1
 
         br
         br
@@ -107,33 +94,24 @@ html(lang='en')
     .col-md-12
         h2.center Tweets
         hr
-      script.
-        var i=0;
-        var tweets= !{JSON.stringify(tweets)};
-        var user= !{JSON.stringify(user)};
-        while (tweets[i].nickname != null)
-        {
-          document.write('<div class="row">');
-          document.write('<div class="col-md-6 col-md-offset-3 boxtweets">');
-          document.write('<div class="tweethead">');
-          if (tweets[i].id == user._id)
-          {
-            document.write('<form role="form" action="/deletetweet" method="post" enctype="plain">');
-            document.write('<div class="form-group">');
-            document.write('<input type="hidden" name="idtweet" class="form-control" value="' + tweets[i]._id + '">');
-            document.write('<button type="submit" class="glyphicon glyphicon-remove-circle" style="float:right; color:red; border: none; background: none; margin: 0px;"></button>');
-            document.write('</div>');
-            document.write('</form>');
-          }
-          document.write('<a href="public/' + tweets[i].id + '" class="nickname" >&nbsp' + tweets[i].nickname + '</div></a>');
-          document.write('<div class="bodytweet">'+tweets[i].tweet+'</div>');
-          document.write('<div id="footertweet"><p>'+tweets[i].date+tweets[i].location+'</p>');
-
-          document.write('</div>');
-          document.write('</div>');
-          document.write('</div>');
-          document.write('<br/>');
-          i++;
-        }
+        -nbt= tweet.length
+        -var i=0
+        while i < nbt
+          .container
+            .row
+              .col-md-6.col-md-offset-3.boxtweets
+                .tweethead
+                  if tweet[i].id == user._id
+                    form(role='form', action='/deletetweet', method='post', enctype='plain')
+                      .form-group
+                        input.form-control(type='hidden', name='idtweet', value='#{tweet[i]._id}')
+                        button.glyphicon.glyphicon-remove-circle(type='submit', style='float:right; color:red; border: none; background: none; margin: 0px;')
+                  a.nickname(href="public/#{tweet[i].id}") #{tweet[i].nickname}
+                .bodytweet
+                  span=tweet[i].tweet
+                #footertweet
+                  p #{tweet[i].date}  #{tweet[i].location}
+            br
+            -i=i+1
 
 script(src='../assets/js/bootstrap.js')
