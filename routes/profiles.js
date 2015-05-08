@@ -54,9 +54,11 @@ module.exports = function(passport){
 	/* delete account */
 
 	router.post('/deleteaccount', isAuthenticated, function(req, res) {
-		User.findByIdAndRemove(req.user._id, function (err, account) {
-		if (err) return console.error(err);
-		res.redirect('/');
+		tweet.remove({id: req.user._id},function (err, tweets) {
+			User.findByIdAndRemove(req.user._id, function (err, account) {
+				if (err) return console.error(err);
+				res.redirect('/');
+			});
 		});
 	});
 
