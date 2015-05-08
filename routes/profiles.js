@@ -22,8 +22,14 @@ module.exports = function(passport){
 			});
 
 	router.post('/profile', isAuthenticated, function(req, res){
+		User.find({username: req.body.Nickname}).exec(function (err, user) {
+			if(user.length == 0) {
 				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
+			} else {
+				res.redirect('profile');
+			}
+		});
 	});
 
 	/* public profile */
