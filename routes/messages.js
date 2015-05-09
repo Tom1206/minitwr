@@ -10,8 +10,7 @@ var msg = require('../models/msg');
 
 
 
-var app = require('express')(),
-    server = require('http').createServer(app),
+var server = require('http').createServer(router),
     io = require('socket.io').listen(server),
     fs = require('fs');
 
@@ -32,19 +31,16 @@ var app = require('express')(),
 
 		var io = require('socket.io').listen(server);
 
-		// Quand on client se connecte, on le note dans la console
-    io.sockets.on('connection', function (socket) {
+		// Quand on client se connecte
+    io.sockets.on('connection', function (socket, pseudo) {
+      
 
-      socket.on('message', function (mess) {
-          console.log('message : ' + mess);
+      socket.on('message', function (mess, pseudo) {
+          console.log('message : ' + mess + ' de ' + pseudo);
+          socket.broadcast.emit('message', {pseudo: pseudo, message: mess});
       });
 
-      socket.on('write', function(who){
-        console.log('to : '+ who);
-        console.log('from ' + user);
-  //      var newmsg = new msg({id1: req.user.username, id2: who});
-  //  		newtweet.save();
-      });
+
     });
 
 		server.listen(8080);

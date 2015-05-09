@@ -54,17 +54,13 @@ html(lang='en')
     .container
       .row
         .col-md-2.col-sm-2.pull-left
-          form#write(action='/', method='post')
-            .input-group
-              input.form-control(type='text', name='who', id='who', placeholder='Who ?')
-              .input-group-btn
-                .form-group
-                  button.btn.btn-default(type='submit')
-                    span.glyphicon.glyphicon-pencil
+          section#connected
 
         .col-md-7.col-sm-7.pull-left
           .row
             .overflow
+              section#zone_chat
+
 
           .row
             form#newMessage(action='/', method='post')
@@ -78,20 +74,25 @@ html(lang='en')
 
     script(src='http://localhost:8080/socket.io/socket.io.js')
     script.
+      var pseudo = !{JSON.stringify(user.username)};
       var socket = io.connect('http://localhost:8080');
+      
+      socket.on('message', function(data) {
+                insereMessage(data.pseudo, data.message)
+            })
+
       $('#newMessage').submit(function () {
                     var message = $('#message').val();
-                    socket.emit('message', message); // Transmet le message aux autres
+                    socket.emit('message', message, pseudo); // Transmet le message aux autres
+                    insereMessage(pseudo, message);
                     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
                     return false; // Permet de bloquer l'envoi "classique" du formulaire
                 });
 
-      $('#write').submit(function () {
-                  var who = $('#who').val();
-                  socket.emit('write', who);
-                  $('#who').val('');
-                  return false;
-                });
+
+      function insereMessage(pseudo, message) {
+                $('#zone_chat').append('<p><strong>' + pseudo + '</strong> :' + message + '</p>');
+            }
 
     script(src='scripts.js')
     // Bootstrap core JavaScript
