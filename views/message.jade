@@ -64,9 +64,9 @@ html(lang='en')
 
           .row
             form#newMessage(action='/', method='post')
-              .col-md-11.col-sm-11.pull-left
+              .col-md-10.col-sm-10.col-xs-8.pull-left
                 input.form-control(type='text', name='message', id='message', placeholder='Your message')
-              .col-md-1.col-sm-1.pull-left
+              .col-md-1.col-sm-1.col-xs-1.pull-left
                 .input-group-btn
                   .form-group
                     button.btn.btn-default(type='submit')
@@ -76,9 +76,9 @@ html(lang='en')
     script.
       var pseudo = !{JSON.stringify(user.username)};
       var socket = io.connect('http://localhost:8080');
-      
+
       socket.on('message', function(data) {
-                insereMessage(data.pseudo, data.message)
+                insereMessage(data.pseudo, data.message);
             })
 
       $('#newMessage').submit(function () {
@@ -92,6 +92,9 @@ html(lang='en')
 
       function insereMessage(pseudo, message) {
                 $('#zone_chat').append('<p><strong>' + pseudo + '</strong> :' + message + '</p>');
+            }
+      function inseretexte(texte) {
+                $('#zone_chat').append('<p>' + texte + '</p>');
             }
 
     script(src='scripts.js')

@@ -33,13 +33,12 @@ var server = require('http').createServer(router),
 
 		// Quand on client se connecte
     io.sockets.on('connection', function (socket, pseudo) {
-      
+
 
       socket.on('message', function (mess, pseudo) {
           console.log('message : ' + mess + ' de ' + pseudo);
           socket.broadcast.emit('message', {pseudo: pseudo, message: mess});
       });
-
 
     });
 
