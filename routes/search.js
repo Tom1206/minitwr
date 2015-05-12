@@ -11,7 +11,6 @@ var User = require('../models/user');
 
 module.exports = function(passport){
 
-
   /* search tool */
 	router.post('/search', authenticate.auth, function(req, res) {
 		tweet.find({tweet: new RegExp(req.body.research, 'i')}).sort({date: -1}).exec(function(err,tweets) {

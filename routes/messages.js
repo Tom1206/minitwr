@@ -9,8 +9,6 @@ var tweet = require('../models/tweet');
 var User = require('../models/user');
 var msg = require('../models/msg');
 
-
-
 var server = require('http').createServer(router),
     io = require('socket.io').listen(server),
     fs = require('fs');
@@ -18,16 +16,14 @@ var server = require('http').createServer(router),
 	module.exports = function(passport){
 
 	  // message
-
 		router.get('/message', authenticate.auth, function(req, res){
 			res.render('message', {user: req.user});
 		});
 
 		var io = require('socket.io').listen(server);
 
-		// Quand on client se connecte
+		// quand un client se connecte
     io.sockets.on('connection', function (socket, pseudo) {
-
 
       socket.on('message', function (mess, pseudo) {
           socket.broadcast.emit('message', {pseudo: pseudo, message: mess});
