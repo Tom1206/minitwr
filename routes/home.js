@@ -1,6 +1,7 @@
 var express = require('express');
 var moment = require('moment');
 var request = require('request');
+var authenticate = require('../passport/authenticate.js');
 
 var router = express.Router();
 
@@ -9,23 +10,17 @@ var User = require('../models/user');
 
 var gmKey = '';
 
-var isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated())
-		return next();
-	res.redirect('/');
-}
-
 module.exports = function(passport){
 
   /* GET /home */
-	router.get('/home', isAuthenticated, function(req, res){
+	router.get('/home', authenticate.auth, function(req, res){
 				tweet.find().limit(10).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
 				res.render('home', { user: req.user, tweet: tweets});
 			});
 	});
 
-	router.post('/affichetweet', isAuthenticated, function(req, res){
+	router.post('/affichetweet', authenticate.auth, function(req, res){
 				tweet.find().limit(req.body.nbtweet).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
 				console.log(tweets);
@@ -33,7 +28,7 @@ module.exports = function(passport){
 			});
 	});
 
-	router.post('/deletetweet', isAuthenticated, function(req, res) {
+	router.post('/deletetweet', authenticate.auth, function(req, res) {
 		tweet.findById(req.body.idtweet, function (err, tweets) {
 			if(tweets.id == req.user._id){
 				tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
@@ -46,7 +41,7 @@ module.exports = function(passport){
 	});
 
 	/* POST /home - send a tweet */
-  router.post('/home', isAuthenticated, function(req, res) {
+  router.post('/home', authenticate.auth, function(req, res) {
 		// Add the tweet to the database
 		var date = moment().format('YYYY/MM/DD, HH:mm');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});

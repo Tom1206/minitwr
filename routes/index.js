@@ -1,15 +1,10 @@
 var express = require('express');
+var authenticate = require('../passport/authenticate.js');
 
 var router = express.Router();
 
 var tweet = require('../models/tweet');
 var User = require('../models/user');
-
-var isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated())
-		return next();
-	res.redirect('/');
-}
 
 module.exports = function(passport){
 

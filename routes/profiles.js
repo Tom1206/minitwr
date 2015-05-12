@@ -1,27 +1,22 @@
 var express = require('express');
 var formidable = require('formidable');
 var fs = require('fs');
+var authenticate = require('../passport/authenticate.js');
 
 var router = express.Router();
 
 var tweet = require('../models/tweet');
 var User = require('../models/user');
 
-var isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated())
-		return next();
-	res.redirect('/');
-}
-
 module.exports = function(passport){
 
   /* /profile */
 
-	router.get('/profile', isAuthenticated, function(req, res){
+	router.get('/profile', authenticate.auth, function(req, res){
 				res.render('profile', { user: req.user, name_picture: req.user.picture});
 			});
 
-	router.post('/profile', isAuthenticated, function(req, res){
+	router.post('/profile', authenticate.auth, function(req, res){
 		User.find({username: req.body.Nickname}).exec(function (err, user) {
 			if(user.length == 0) {
 				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
@@ -35,7 +30,7 @@ module.exports = function(passport){
 
 	/* public profile */
 
-	router.get('/public/:rId', isAuthenticated, function(req, res){
+	router.get('/public/:rId', authenticate.auth, function(req, res){
 				User.find({_id: req.params.rId}).exec(function (err, rUser) {
 					if (err) return res.render('error', {message: err.message,error: err});
 					else {
@@ -47,7 +42,7 @@ module.exports = function(passport){
 			});
 
 	/* delete tweet */
-	router.post('/deletetweetp', isAuthenticated, function(req, res) {
+	router.post('/deletetweetp', authenticate.auth, function(req, res) {
 		tweet.findById(req.body.idtweet, function (err, tweets) {
 			if(tweets.id == req.user._id){
 				tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
@@ -60,7 +55,7 @@ module.exports = function(passport){
 	});
 	/* delete account */
 
-	router.post('/deleteaccount', isAuthenticated, function(req, res) {
+	router.post('/deleteaccount', authenticate.auth, function(req, res) {
 		tweet.remove({id: req.user._id},function (err, tweets) {
 			User.findByIdAndRemove(req.user._id, function (err, account) {
 				if (err) return console.error(err);
@@ -71,7 +66,7 @@ module.exports = function(passport){
 
   /* profile picture upload */
 
-  router.post('/upload', isAuthenticated, function(req, res) {
+  router.post('/upload', authenticate.auth, function(req, res) {
   	var form = new formidable.IncomingForm();
   	form.uploadDir = "./public/uploads/pictures";
 

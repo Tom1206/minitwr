@@ -7,11 +7,23 @@ html(lang='en')
     link(rel='shortcut icon', href='assets/ico/favicon.png')
     title Twitchers
     script(src='assets/js/jquery.min.js')
+    script(type='text/javascript', src='public/assets/js/noty/packaged/jquery.noty.packaged.min.js')
     // Bootstrap core CSS
     link(href='assets/css/bootstrap.css', rel='stylesheet')
     // Custoyles.username._id
     link(href='assets/css/style.css', rel='stylesheet')
   body
+
+    if suppression==1
+      .script
+        $.noty.defaults.killer = true;
+          noty({
+             text: 'Your tweet has been deleted',
+             layout: 'top',
+             closeWith: ['click', 'hover'],
+             type: 'success'
+          });
+          
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
       .container
