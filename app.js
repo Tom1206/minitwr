@@ -71,7 +71,7 @@ if (app.get('env') === 'development') {
         res.status(err.status || 500);
         if(err.status == 404)
         {
-          res.render('404')
+          res.render('404');
 
         }
         else
