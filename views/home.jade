@@ -2,8 +2,8 @@ doctype html
 html(lang='en')
   head
     include ./includes/head.jade
+    script(type='text/javascript', src='assets/js/noty/packaged/jquery.noty.packaged.min.js')
   body
-
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
       .container
@@ -106,17 +106,6 @@ html(lang='en')
                type: 'success'
             });
 
-    br
   script(src='scripts.js')
 
-  // bootbox code
-  script(src='assets/js/bootbox.min.js')
-  script.
-   $(document).on("click", ".alert", function(e) {
-   bootbox.alert("Congratulation ! Your location has been successfully loaded !", function() {
-   console.log("Alert Callback");
-   });
-   });
-
-  // Bootstrap core JavaScript
   script(src='assets/js/bootstrap.js')
