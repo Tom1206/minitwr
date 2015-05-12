@@ -68,89 +68,74 @@ html(lang='en')
                   input#email1.form-control(type='email', name='Mail', value='#{user.email}', required='required')
                 .form-group
                   label
-                    script.
-                      var user= !{JSON.stringify(user)};
-                      if(user.sexe == "Male")
-                      {
-                        document.write('M ')
-                        document.write('<input type="checkbox" name="sexe" value="Male" checked>');
-                        document.write(' F ')
-                        document.write('<input type="checkbox" name="sexe" value="Female">');
-                      }
-                      else if(user.sexe == "Female")
-                      {
-                        document.write('M ')
-                        document.write('<input type="checkbox" name="sexe" value="Male">');
-                        document.write(' F ')
-                        document.write('<input type="checkbox" name="sexe" value="Female"  checked>');
-                      }
-                      else
-                      {
-                        document.write('M ')
-                        document.write('<input type="checkbox" name="sexe" value="Male">');
-                        document.write(' F ')
-                        document.write('<input type="checkbox" name="sexe" value="Female">');
-                      }
+                    if(user.sexe == "Male")
+                      | M
+                      input(type='checkbox', name='sexe', value='Male', checked='')
+                      | F
+                      input(type='checkbox', name='sexe', value='Female')
+                    else if(user.sexe == "Female")
+                      | M
+                      input(type='checkbox', name='sexe', value='Male')
+                      | F
+                      input(type='checkbox', name='sexe', value='Female', checked='')
+                    else
+                      | M
+                      input(type='checkbox', name='sexe', value='Male')
+                      | F
+                      input(type='checkbox', name='sexe', value='Female', checked='')
+
                 label(for='country')  Country
                 br
                 select(type='pays', name='pays')
-                  script.
-                    var user= !{JSON.stringify(user)};
-                    if (user.pays == "Deutschland")
-                    {
-                        document.write('<option value=""> </option>');
-                        document.write('<option value="Deutschland", selected="selected"> Deutschland </option>');
-                        document.write('<option value="France"> France </option>');
-                        document.write('<option value="USA"> USA </option>');
-                        document.write('<option value="PHPland"> PHPland </option>');
-                        document.write('<option value="other"> other </option>');
-                    }
-                    else if (user.pays == "France")
-                    {
-                      document.write('<option value=""> </option>');
-                      document.write('<option value="Deutschland"> Deutschland </option>');
-                      document.write('<option value="France", selected="selected"> France </option>');
-                      document.write('<option value="USA"> USA </option>');
-                      document.write('<option value="PHPland"> PHPland </option>');
-                      document.write('<option value="other"> other </option>');
-                    }
-                    else if (user.pays == "USA")
-                    {
-                      document.write('<option value=""> </option>');
-                      document.write('<option value="Deutschland"> Deutschland </option>');
-                      document.write('<option value="France""> France </option>');
-                      document.write('<option value="USA", selected="selected"> USA </option>');
-                      document.write('<option value="PHPland"> PHPland </option>');
-                      document.write('<option value="other"> other </option>');
-                    }
-                    else if (user.pays == "PHPland")
-                    {
-                      document.write('<option value=""> </option>');
-                      document.write('<option value="Deutschland"> Deutschland </option>');
-                      document.write('<option value="France""> France </option>');
-                      document.write('<option value="USA"> USA </option>');
-                      document.write('<option value="PHPland", selected="selected"> PHPland </option>');
-                      document.write('<option value="other"> other </option>');
-                    }
-                    else if (user.pays == "other")
-                    {
-                      document.write('<option value=""> </option>');
-                      document.write('<option value="Deutschland"> Deutschland </option>');
-                      document.write('<option value="France""> France </option>');
-                      document.write('<option value="USA"> USA </option>');
-                      document.write('<option value="PHPland"> PHPland </option>');
-                      document.write('<option value="other", selected="selected"> other </option>');
-                    }
-                    else
-                    {
-                      document.write('<option value="", selected="selected"> </option>');
-                      document.write('<option value="Deutschland"> Deutschland </option>');
-                      document.write('<option value="France""> France </option>');
-                      document.write('<option value="USA"> USA </option>');
-                      document.write('<option value="PHPland"> PHPland </option>');
-                      document.write('<option value="other"> other </option>');
-                    }
+                  if (user.pays == "Deutschland")
+                    option(value='')
+                    option(value='Deutschland', selected='selected')  Deutschland
+                    option(value='France')  France
+                    option(value='USA')  USA
+                    option(value='PHPland')  PHPland
+                    option(value='other')  other
 
+                  else if (user.pays == "France")
+                    option(value='')
+                    option(value='Deutschland')  Deutschland
+                    option(value='France', selected='selected')  France
+                    option(value='USA')  USA
+                    option(value='PHPland')  PHPland
+                    option(value='other')  other
+
+                  else if (user.pays == "USA")
+                    option(value='')
+                    option(value='Deutschland')  Deutschland
+                    option(value='France')  France
+                    option(value='USA', selected='selected')  USA
+                    option(value='PHPland')  PHPland
+                    option(value='other')  other
+
+                  else if (user.pays == "PHPland")
+                    option(value='')
+                    option(value='Deutschland')  Deutschland
+                    option(value='France')  France
+                    option(value='USA')  USA
+                    option(value='PHPland', selected='selected')  PHPland
+                    option(value='other')  other
+
+                  else if (user.pays == "other")
+                    option(value='')
+                    option(value='Deutschland')  Deutschland
+                    option(value='France')  France
+                    option(value='USA')  USA
+                    option(value='PHPland')  PHPland
+                    option(value='other', selected='selected')  other
+
+                  else
+                    option(value='', selected='selected')
+                    option(value='Deutschland')  Deutschland
+                    option(value='France')  France
+                    option(value='USA')  USA
+                    option(value='PHPland')  PHPland
+                    option(value='other')  other
+
+                  
                 br
                 br
                 label(for='tellus')  Tell us more about you !

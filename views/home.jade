@@ -3,6 +3,7 @@ html(lang='en')
   head
     include ./includes/head.jade
   body
+
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
       .container
@@ -95,7 +96,15 @@ html(lang='en')
                   input.form-control(type='hidden', name='nbtweet', value="#{i}")
                   button.btn.btn-default.pull-right(type='submit') More Tweets
 
-
+      if suppression
+        script.
+          $.noty.defaults.killer = true;
+            noty({
+               text: 'Your tweet has been deleted',
+               layout: 'top',
+               closeWith: ['click', 'hover'],
+               type: 'success'
+            });
 
     br
   script(src='scripts.js')
