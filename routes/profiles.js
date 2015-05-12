@@ -27,6 +27,7 @@ module.exports = function(passport){
 				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
 			} else {
+				User.update({_id: req.user._id}, {$set: {email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
 				res.redirect('profile');
 			}
 		});
