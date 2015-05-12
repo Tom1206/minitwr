@@ -1,7 +1,14 @@
 doctype html
 html(lang='en')
   head
-    include ./includes/head.jade
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Twitchers - a simple social network for twitchers (obviously)')
+    link(rel='shortcut icon', href='assets/ico/favicon.png')
+    title Twitchers
+    script(src='../assets/js/jquery.min.js')
+    link(href='../assets/css/bootstrap.css', rel='stylesheet')
+    link(href='../assets/css/style.css', rel='stylesheet')
   body
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
@@ -100,4 +107,5 @@ html(lang='en')
                         input.form-control(type='hidden', name='nbtweet', value="#{i}")
                         button.btn.btn-default.pull-right(type='submit') More Tweets
 
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
     script(src='../assets/js/bootstrap.js')
