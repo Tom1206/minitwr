@@ -23,7 +23,6 @@ module.exports = function(passport){
 	router.post('/affichetweet', authenticate.auth, function(req, res){
 				tweet.find().limit(req.body.nbtweet).sort({date: -1}).exec( function (err, tweets) {
 			  if (err) return console.error(err);
-				console.log(tweets);
 				res.render('home', { user: req.user, tweet: tweets});
 			});
 	});
@@ -31,9 +30,14 @@ module.exports = function(passport){
 	router.post('/deletetweet', authenticate.auth, function(req, res) {
 		tweet.findById(req.body.idtweet, function (err, tweets) {
 			if(tweets.id == req.user._id){
-				tweet.findByIdAndRemove(req.body.idtweet, function (err, tweet) {
-				if (err) return console.error(err);
-				res.redirect('/home');
+				tweet.findByIdAndRemove(req.body.idtweet, function (err, supp) {
+
+					if (err) return console.error(err);
+					tweet.find().limit(10).sort({date: -1}).exec( function (err, tweet) {
+
+					  if (err) return console.error(err);
+						res.render('home', { user: req.user, tweet: tweet, suppression: 1});
+					});
 		  	});
 			}
 			else res.render('404');
@@ -45,7 +49,6 @@ module.exports = function(passport){
 		// Add the tweet to the database
 		var date = moment().format('YYYY/MM/DD, HH:mm');
 		var newtweet = new tweet({nickname: req.user.username, tweet: req.body.Tweet, date: date, id: req.user._id});
-		console.log(newtweet);
 		newtweet.save();
 
 		// Add the location to the tweet if necessary
