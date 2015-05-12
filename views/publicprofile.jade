@@ -1,16 +1,7 @@
 doctype html
 html(lang='en')
   head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='description', content='Mini Twitter Projet ProgWeb L1 S2 2015')
-    link(rel='shortcut icon', href='../assets/ico/favicon.png')
-    title Twitchers - #{user.username} (profil)
-    script(src='../assets/js/jquery.min.js')
-    // Bootstrap core CSS
-    link(href='../assets/css/bootstrap.css', rel='stylesheet')
-    // Custom styles
-    link(href='../assets/css/style.css', rel='stylesheet')
+    include ./includes/head.jade
   body
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
