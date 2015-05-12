@@ -1,6 +1,7 @@
 var express = require('express');
 var moment = require('moment');
 var request = require('request');
+var authenticate = require('../passport/authenticate.js');
 
 var router = express.Router();
 
@@ -14,18 +15,11 @@ var server = require('http').createServer(router),
     io = require('socket.io').listen(server),
     fs = require('fs');
 
-
-	var isAuthenticated = function (req, res, next) {
-		if (req.isAuthenticated())
-			return next();
-		res.redirect('/');
-	}
-
 	module.exports = function(passport){
 
 	  // message
 
-		router.get('/message', isAuthenticated, function(req, res){
+		router.get('/message', authenticate.auth, function(req, res){
 			res.render('message', {user: req.user});
 		});
 
