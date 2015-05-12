@@ -20,10 +20,10 @@ module.exports = function(passport){
 		User.find({username: req.body.Nickname}).exec(function (err, user) {
 			if(user.length == 0) {
 				User.update({_id: req.user._id}, {$set: { username: req.body.Nickname, email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
-				res.redirect('profile');
+				res.render('profile', { user: req.user, name_picture: req.user.picture, libre: 2});
 			} else {
 				User.update({_id: req.user._id}, {$set: {email: req.body.Mail, pays: req.body.pays, description: req.body.tellus, sexe: req.body.sexe }}, { upsert: true }, function(){});
-				res.redirect('profile');
+				res.render('profile', { user: req.user, name_picture: req.user.picture, libre: 1});
 			}
 		});
 	});

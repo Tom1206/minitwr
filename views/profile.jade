@@ -2,6 +2,7 @@ doctype html
 html(lang='en')
   head
     include ./includes/head.jade
+    script(type='text/javascript', src='assets/js/noty/packaged/jquery.noty.packaged.min.js')
   body
     // navbar
     #navigation.navbar.navbar-default.navbar-fixed-top
@@ -150,6 +151,26 @@ html(lang='en')
       .form-group
         .center
           button.btn.btn-large.btn-danger(type='submit') Delete my account
+
+  if libre
+    if libre == 1
+      script.
+        $.noty.defaults.killer = true;
+          noty({
+             text: 'Username already taken',
+             layout: 'bottom',
+             closeWith: ['click', 'hover'],
+             type: 'error'
+          });
+    else if libre == 2
+      script.
+        $.noty.defaults.killer = true;
+          noty({
+             text: 'Profile successfully updated',
+             layout: 'bottom',
+             closeWith: ['click', 'hover'],
+             type: 'success'
+          });
 
   script(src='scripts.js')
 
