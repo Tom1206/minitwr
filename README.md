@@ -6,6 +6,6 @@
 * Tweets (saved in the database) with date and localization
 * Personal profile/public profile (username, mail, country, gender, personal description and picture)
 * Search tool (users and tweets)
-* Tags (not implemented yet)
+* Realtime chat with socket.io
 
 No animals were harmed in the making of this site.
