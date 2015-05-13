@@ -8,6 +8,7 @@ var router = express.Router();
 var tweet = require('../models/tweet');
 var User = require('../models/user');
 
+// Google API key
 var gmKey = '';
 
 module.exports = function(passport){
@@ -27,6 +28,7 @@ module.exports = function(passport){
 			});
 	});
 
+  // Check if the user can delete the tweet and delete it if OK
 	router.post('/deletetweet', authenticate.auth, function(req, res) {
 		tweet.findById(req.body.idtweet, function (err, tweets) {
 			if(tweets.id == req.user._id){
@@ -55,6 +57,7 @@ module.exports = function(passport){
 		function getLocation(callback){
 			var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + req.body.latitude + ',' + req.body.longitude +'&key=' + gmKey;
 
+			// Google API request
 			request({url: apiCall,json: true}, function (error, response, body) {
 				if(!error && response.statusCode == 200) {
 					var location = " - Envoyé depuis " + body.results[1].formatted_address;
@@ -68,6 +71,7 @@ module.exports = function(passport){
 			res.redirect('/home');
 		}
 
+		// Check if latitude and longitude are correct
 		if(req.body.latitude&&req.body.longitude){
 			getLocation(function(result){
 				addLocation(result);

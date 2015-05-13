@@ -65,7 +65,6 @@ module.exports = function(passport){
 	});
 
   /* profile picture upload */
-
   router.post('/upload', authenticate.auth, function(req, res) {
   	var form = new formidable.IncomingForm();
   	form.uploadDir = "./public/uploads/pictures";
